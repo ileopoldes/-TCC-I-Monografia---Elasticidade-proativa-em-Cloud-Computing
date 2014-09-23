@@ -1,19 +1,14 @@
+% Análise Preditiva como Base para uma Abordagem Proativa de 
+% Elasticidade em Cloud Computing
+% PAULO IGOR LEOPOLDES BENDER
 %
-% Exemplo LaTeX de monografia UNISINOS
-%
+% Monografia - Trabalho de Conclusão de Curso I
+% Bacharelado em Ciência da Computação
+% 
 % Elaborado com base nas orientações dadas no documento
 % ``GUIA PARA ELABORAÇÃO DE TRABALHOS ACADÊMICOS''
 % disponível no site da biblioteca da Unisinos.
 % http://www.unisinos.br/biblioteca
-%
-% Os elementos textuais abaixo são apresentados na ordem em que devem
-% aparecer no documento.  Repare que nem todos são obrigatórios - isso
-% é devidamente indicado em cada caso.
-%
-% Comentários abaixo colocados entre aspas (`` '') foram
-% extraídos diretamente do documento da biblioteca.
-%
-% Este documento é de domínio público.
 %
 
 %=======================================================================
@@ -53,13 +48,13 @@
 %=======================================================================
 % Dados gerais sobre o trabalho.
 %=======================================================================
-\autor{Tal}{Fulano de}
-\titulo{Exemplo de Monografia no Padrão da UNISINOS}
+\autor{Bender}{Paulo Igor Leopoldes}
+\titulo{Análise Preditiva como Base para uma Abordagem Proativa de Elasticidade em Cloud Computing}
 \subtitulo{Versão \LaTeX}
-\orientador[Prof.~Dr.]{Knuth}{Donald E.}
+\orientador[Prof.~Dr.]{Righi}{Rodrigo da Rosa}
 %\coorientador[Prof.~Dr.]{Lamport}{Leslie}
 \local{São Leopoldo}
-\ano{2012}
+\ano{2014}
 
 %% dados específicos para Dissertação de Mestrado
 %\unidade{Unidade Acadêmica de Pesquisa e Pós-Graduação}
@@ -86,14 +81,14 @@ pela Universidade do Vale do Rio dos Sinos --- UNISINOS
 % cada palavra-chave deve ser fornecida duas vezes, uma em português e
 % outra no idioma estrangeiro (na verdade, em tantos idiomas quantos se
 % desejar).
-\palavrachave{brazilian}{UNISINOS}
-\palavrachave{brazilian}{ABNT}
-\palavrachave{brazilian}{\LaTeX}
-\palavrachave{brazilian}{Formatação de documentos}
-\palavrachave{english}{UNISINOS}
-\palavrachave{english}{ABNT}
-\palavrachave{english}{\LaTeX}
-\palavrachave{english}{Document typesetting}
+\palavrachave{brazilian}{Computação em Nuvem}
+\palavrachave{brazilian}{Elasticidade}
+\palavrachave{brazilian}{Análise Preditiva}
+\palavrachave{brazilian}{Gerência de Recursos}
+\palavrachave{english}{Cloud Computing}
+\palavrachave{english}{Elasticity}
+\palavrachave{english}{Predictive Analysis}
+\palavrachave{english}{Resource provisioning}
 
 %=======================================================================
 % Início do documento.
@@ -110,21 +105,21 @@ pela Universidade do Vale do Rio dos Sinos --- UNISINOS
 % à direita.  Mas a formatação é basicamente livre.  Só não se escreve
 % a palavra 'dedicatória'.
 %=======================================================================
-\begin{dedicatoria}
-Aos nossos pais.\\[4ex] % quebra a linha dando um espaçamento maior
-\begin{itshape} % faz o texto ficar em itálico
-If I have seen farther than others,\\
-it is because I stood on the shoulders of giants.\\
-\end{itshape}
---- \textsc{Sir Isaac Newton} % \textsc é o "small caps"
-\end{dedicatoria}
+%\begin{dedicatoria}
+%Aos nossos pais.\\[4ex] % quebra a linha dando um espaçamento maior
+%\begin{itshape} % faz o texto ficar em itálico
+%If I have seen farther than others,\\
+%it is because I stood on the shoulders of giants.\\
+%\end{itshape}
+%--- \textsc{Sir Isaac Newton} % \textsc é o "small caps"
+%\end{dedicatoria}
 
 %=======================================================================
 % Agradecimentos (opcional).
 %=======================================================================
-\begin{agradecimentos}
-Obrigado!
-\end{agradecimentos}
+%\begin{agradecimentos}
+%Obrigado!
+%\end{agradecimentos}
 
 %=======================================================================
 % Epígrafe (opcional).
@@ -133,10 +128,10 @@ Obrigado!
 % relacionada com a matéria tratada no corpo do trabalho. Podem, também,
 % constar epígrafes nas folhas de aberturas das seções primárias.''
 %=======================================================================
-\begin{epigrafe}
-``\textit{Ninguém abre um livro sem que aprenda alguma coisa}''.\\
-(Anônimo)
-\end{epigrafe}
+%\begin{epigrafe}
+%``\textit{Ninguém abre um livro sem que aprenda alguma coisa}''.\\
+%(Anônimo)
+%\end{epigrafe}
 
 %=======================================================================
 % Resumo em Português.
@@ -163,47 +158,47 @@ This document presents guidelines on the use of UNISINOS's \LaTeX\ class for aca
 %=======================================================================
 % Lista de Figuras (opcional).
 %=======================================================================
-\listoffigures
+%\listoffigures
 
 %=======================================================================
 % Lista de Tabelas (opcional).
 %=======================================================================
-\listoftables
+%\listoftables
 
 %=======================================================================
 % Lista de Abreviaturas (opcional).
 %
 % Deve ser passada como parâmetro a maior das abreviaturas utilizadas.
 %=======================================================================
-\begin{listadeabreviaturas}{seg., segs.}
-\item[ampl.] ampliado, -a
-\item[atual.] atualizado, -a
-\item[coord.] coordenador
-\item[N.~T.] Novo Testamento
-\item[seg., segs.] seguinte, -s
-\end{listadeabreviaturas}
+%\begin{listadeabreviaturas}{seg., segs.}
+%\item[ampl.] ampliado, -a
+%\item[atual.] atualizado, -a
+%\item[coord.] coordenador
+%\item[N.~T.] Novo Testamento
+%\item[seg., segs.] seguinte, -s
+%\end{listadeabreviaturas}
 
 %=======================================================================
 % Lista de Siglas (opcional).
 %
 % Deve ser passada como parâmetro a maior das siglas utilizadas.
 %=======================================================================
-\begin{listadesiglas}{FAPERGS}
-\item[ABNT] Associação Brasileira de Normas Técnicas
-\item[CAPES] Coordenação de Aperfeiçoamento de Pessoal de Nível Superior
-\item[FAPERGS] Fundação de Amparo à Pesquisa do Estado do Rio Grande do Sul
-\end{listadesiglas}
+%\begin{listadesiglas}{FAPERGS}
+%\item[ABNT] Associação Brasileira de Normas Técnicas
+%\item[CAPES] Coordenação de Aperfeiçoamento de Pessoal de Nível Superior
+%\item[FAPERGS] Fundação de Amparo à Pesquisa do Estado do Rio Grande do Sul
+%\end{listadesiglas}
 
 %=======================================================================
 % Lista de Símbolos (opcional).
 %
 % Deve ser passado o maior (mais largo) dos símbolos utilizados.
 %=======================================================================
-\begin{listadesimbolos}{Ca}
-\item[\textsuperscript{o}C] Graus Celsius
-\item[Al] Alumínio
-\item[Ca] Cálcio
-\end{listadesimbolos}
+%\begin{listadesimbolos}{Ca}
+%\item[\textsuperscript{o}C] Graus Celsius
+%\item[Al] Alumínio
+%\item[Ca] Cálcio
+%\end{listadesimbolos}
 
 %=======================================================================
 % Sumário
@@ -216,7 +211,7 @@ This document presents guidelines on the use of UNISINOS's \LaTeX\ class for aca
 \chapter{Introdução}
 
 % as epígrafes nos capítulos são opcionais
-\epigrafecap{The reasonable man adapts himself to the world; the unreasonable one persists in trying to adapt the world to himself. Therefore all progress depends on the unreasonable man.}{George Bernard Shaw}
+%\epigrafecap{The reasonable man adapts himself to the world; the unreasonable one persists in trying to adapt the world to himself. %Therefore all progress depends on the unreasonable man.}{George Bernard Shaw}
 
 Conforme \citetexto{Hexsel11}, a introdução tem o objetivo de ``\emph{introduzir} o material que vai ser apresentado em mais detalhe nas seções subseqüentes''. Na introdução você deve contextualizar o problema e mostrar por que vale a pena resolvê-lo. Você deve apresentar a solução proposta e mostrar o seu diferencial em relação aos trabalhos relacionados. Observe, porém, que na introdução você deve apenas tratar do O QUÊ e PORQUÊ, sem tratar do como \cite{Hexsel11}, que deve ser explicado na seção que descreve o trabalho desenvolvido.
 
