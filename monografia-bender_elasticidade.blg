@@ -1,0 +1,45 @@
+This is BibTeX, Version 0.99c (TeX Live 2009/Debian)
+The top-level auxiliary file: monografia-bender_elasticidade.aux
+The style file: unisinos.bst
+Database file #1: exemplo.bib
+You've used 14 entries,
+            2491 wiz_defined-function locations,
+            684 strings with 6839 characters,
+and the built_in function-call counts, 14280 in all, are:
+= -- 1631
+> -- 137
+< -- 213
++ -- 820
+- -- 35
+* -- 592
+:= -- 1151
+add.period$ -- 57
+call.type$ -- 14
+change.case$ -- 132
+chr.to.int$ -- 104
+cite$ -- 14
+duplicate$ -- 1825
+empty$ -- 626
+format.name$ -- 117
+if$ -- 3298
+int.to.chr$ -- 0
+int.to.str$ -- 0
+missing$ -- 0
+newline$ -- 31
+num.names$ -- 60
+pop$ -- 313
+preamble$ -- 1
+purify$ -- 28
+quote$ -- 0
+skip$ -- 955
+stack$ -- 0
+substring$ -- 828
+swap$ -- 1111
+text.length$ -- 0
+text.prefix$ -- 0
+top$ -- 0
+type$ -- 88
+warning$ -- 0
+while$ -- 83
+width$ -- 0
+write$ -- 16

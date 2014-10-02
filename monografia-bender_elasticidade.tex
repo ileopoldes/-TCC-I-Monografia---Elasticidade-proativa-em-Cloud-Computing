@@ -213,33 +213,35 @@ A própria definição de elasticidade se confunde com a definição de computa�
 % as epígrafes nos capítulos são opcionais
 %\epigrafecap{The reasonable man adapts himself to the world; the unreasonable one persists in trying to adapt the world to himself. %Therefore all progress depends on the unreasonable man.}{George Bernard Shaw}
 
-Conforme \citetexto{Hexsel11}, a introdução tem o objetivo de ``\emph{introduzir} o material que vai ser apresentado em mais detalhe nas seções subseqüentes''. Na introdução você deve contextualizar o problema e mostrar por que vale a pena resolvê-lo. Você deve apresentar a solução proposta e mostrar o seu diferencial em relação aos trabalhos relacionados. Observe, porém, que na introdução você deve apenas tratar do O QUÊ e PORQUÊ, sem tratar do como \cite{Hexsel11}, que deve ser explicado na seção que descreve o trabalho desenvolvido.
+A computação em nuvem trouxe um novo modelo de relacionamento entre as empresas e os seus recursos computacionais. A gestão destes recursos sempre foi uma questão bastante delicada, que tem um reflexo direto no gerenciamento dos custos das companhias. E embora haja organizações que têm uma demanda por recursos computacionais com um comportamento mais previsível, é bastante significativo o número de empresas que têm necessidades mais dinâmicas neste aspecto.
 
-Geralmente, a introdução tem uma estrutura similar ao resumo e deve apresentar:
-\begin{itemize}
-	\item \textbf{Contexto e motivação:} Aqui você deve apresentar o contexto do trabalho (área de que ele se trata) e uma motivação para trabalhar nesse assunto.
-	\item \textbf{Problema:} Aqui você vai apresentar um problema, uma lacuna, observada na área e que você pretende tratar. Você deve se perguntar aqui: ``Que respostas estou disposto a responder?''. O problema deve ser definido claramente e delimitado em termos de espaço de tempo. Veja que essa parte visa alertar o leitor de que o que você está propondo é uma solução para um problema observado na área. 
-	\item \textbf{Objetivos:} Aqui você deve apresentar os objetivos do seu trabalho. Tome cuidado para não confundir objetivos com atividades.   Faça a si mesmo a pergunta: ``O que pretendo alcançar com a pesquisa?''. Você pode discernir entre objetivos gerais e objetivos específicos:
-	\begin{itemize}
-		\item Objetivo geral --- qual o propósito da pesquisa?
-		\item Objetivos específicos --- abertura do objetivo geral em outros menores (possíveis capítulos).
-	\end{itemize}
-	Veja abaixo um exemplo de objetivo retirado da monografia de~\citetexto{Teixeira09}:
+Um exemplo clássico de comportamento com alto grau de variação é encontrado no comércio eletrônico. A sazonalidade com que os recursos são demandados faz com que as empresas gastem muito dinheiro em infraestrutura para garantir o desempenho desejado durante os picos de acesso, e fiquem com recursos parados durante a baixa temporada. É claro, que este cenário não é único do comércio eletrônico, na verdade a maioria das empresas, em maior ou menor grau, acabam apresentando um comportamento semelhante a este no que diz respeito às suas necessidades computacionais.
 
-	Com a possibilidade de acesso a base de dados XML gerada a partir do Sistema de Currículos Lattes e a necessidade de melhor reutilizar as informações existentes neste sistema, o presente trabalho tem como objetivo geral permitir o acesso do pesquisador a seus dados através de uma interface mais amigável: o padrão LaTeX. Para isto destacam-se os seguintes objetivos específicos:
-	\begin{alineas}
-		\item identificar e analisar o formato de especificação de currículos da Plataforma Lattes;
-		\item disponibilizar uma ferramenta para a geração de uma representação de dados intermediária a partir do formato especificado;
-		\item implementar a tradução dos dados colhidos em código LaTeX através da utilização da ferramenta criada;
-		\item analisar os resultados obtidos e as alternativas presentes no uso da ferramenta.
-	\end{alineas}
-\end{itemize}
+A solução oferecida pela cloud computing é justamente disponibilizar recursos computacionais para as empresas de acordo com suas respectivas demandas. Desta forma, os usuários não precisam arcar com o alto custo de manter um parque de máquinas, ou mesmo com as questões relacionadas a gestão e aquisição delas. E tudo isto a um custo bastante baixo, com uma disponibilidade imediata de contratação e um gerenciamento bastante simplificado.
+
+Neste contexto, uma das características mais importantes da computação em nuvem é a elasticidade. Ou seja, a capacidade do ambiente computacional aumentar ou diminuir os recursos demandados pelo usuário. Esta capacidade se apresenta tanto em nível de instâncias de máquinas virtuais e/ou nós de computação, quanto em nível de CPU, memória e largura de banda de rede.
+
+A política de alocação de recursos em ambientes de computação em nuvem pode ser tanto manual quanto automática. Para a abordagem automática, temos ainda duas classificações: reativa e proativa. Na primeira, o usuário define marcos (thresholds) para um mecanismo de regra-condição-ação através dos quais o sistema aloca mais recursos (threshold superior) ou os consolida (threshold inferior). Embora, esta primeira abordagem seja chamada de automática, se faz necessária a intervenção do usuário para especificar as regras, bem como conhecimento da ferramenta de nuvem. Por outro lado, a abordagem proativa usa técnicas de predição para identificar padrões e antecipar a alocação ou consolidação de recursos de forma automática, sem a intervenção do usuário.
+
+A abordagem reativa, juntamente com as políticas manuais, é mais comum em sistemas de nuvem disponíveis na web. Enquanto que existe um esforço de pesquisas na academia para propor soluções proativas para a questão da elasticidade. Portanto, um dos grandes desafios para os provedores é justamente retirar a necessidade de intervenção do usário e oferecer mecanismos que implementem a elasticidade proativa. O que traria um ajuste mais fino na economia de recursos, dentre outros benefícios.
 
 \section{Questão de Pesquisa}
+Um dos grandes pontos a serem discutidos, no que diz respeito à implementação de um tratamento automático para a elasticidade, é a questão da análise do comportamento da aplicação. A qual oferece seus próprios obstáculos a serem transpostos.
+Uma técnica de auto-escalonamento que tenta antecipar os requisitos futuros de uma aplicação, baseado na análise de seu desempenho, é portanto, uma abordagem preditiva. Na literatura, este tema tem sido discutido sob diversos pontos de vista. Algumas das técnicas sugeridas apresentam tanto uma natureza reativa quanto proativa, enquanto outas são excencialmente proativas.
+
+A análise preditiva baseada em séries temporais é uma destas estratégias que têm uma abordagem puramente proativa. Uma série temporal é uma coleção de observações, as quais podem ser discretizadas ou não, feitas sequencialmente ao longo de um período de tempo. 
+A análise de séries temporais pode ser usada para encontrar padrões de repetição na carga de trabalho de uma aplicação, ou para tentar prever valores futuros.
+
+%TODO: sei que falta alguma coisa aqui para complementar e deixar mais claro a questão da pesquisa
 
 \section{Objetivos}
+O objetivo deste trabalho é apresentar uma proposta para análise preditiva que possa servir de base na implementação da elasticidade proativa em ambientes de computação em nuvem.
+
+Para atingir o objetivo acima citado, se faz necessário primeiramente: desenvolver uma estratégia para coleta de dados, criar uma estrutura para analisar os dados e aplicar modelos matemáticos condizentes com os padrões encontrados. E por último, disponibilizar como resposta uma sugestão de alteração da configuração vigente, em virtude da demandada prevista de acordo com a análise realizada. 
 
 \section{Organização do Texto}
+Este texto está organizado em cinco seções. Primeiramente, na seção 2, iremos revisar questões básicas a respeito da área da computação em nuvem, e as definições que são pertinentes ao escopo deste trabalho. Uma retomada dos tópicos relacionados às séries temporais também se faz necessária, bem como questões gerais a respeito de análise preditiva. Na seção 3, iremos avaliar trabalhos correlatos na área, e suas contribuições para a questão da elasticidade proativa. Esta avaliação tomará como objetivo traçar um quadro comparativo das soluções propostas, suas divergências e convergências, com o intuito de identificar lacunas e oportunidades de trabalho na literatura analisada. A seção 4 trará o modelo proposto, descrevendo sua arquitetura e metodologia para avaliação. E por fim, a seção 5 apresenta uma conclusão, especificando as contribuições esperadas, apontando trabalhos relacionados e um cronograma para o projeto.
+
 %=======================================================================
 % Escrevendo o Texto
 %=======================================================================
@@ -252,63 +254,6 @@ Neste capítulo apresentamos alguns exemplos de como colocar figuras e tabelas n
 
 \section{Predição}
 
-\subsection{Legendas}
-As legendas das figuras devem se encontrar no topo da figura e não abaixo, como usualmente colocado. Abaixo da figura, é obrigatório colocar a fonte (mesmo que a figura tenha sido do próprio autor).
-
-As legendas devem conter o tipo da ilustração (Figura, Tabela, etc), seguido de numeração simples (sem número do capítulo).
-
-Toda figura deve ser citada no texto, como nos exemplos que seguem.
-
-\subsection{Figuras}
-A Figura~\ref{fig:escrita} ilustra as fases psicológicas da escrita da dissertação. Você vai se reconhecer no personagem. ;-)
-
-\begin{figure}
-	\caption{Fases psicológicas da escrita da dissertação}
-	\label{fig:escrita}
-	\centering%
-	\begin{minipage}{.8\textwidth}
-		\includegraphics[width=\textwidth]{escrita}
-		\fonte{\citetexto{Cham12}}
-	\end{minipage}
-\end{figure}
-
-\subsection{Tabelas}
-A Tabela~\ref{tab:estacoes} é um exemplo de tabela elaborada pelo(a) próprio(a) autor(a).
-
-\begin{table}
-	\caption{Período das estações do ano no Brasil}
-	\label{tab:estacoes}
-	\centering%
-	\begin{minipage}{.6\textwidth}
-		\begin{tabular*}{\textwidth}{ll}
-			\hline
-			\textbf{Meses} & \textbf{Estações do Ano}\\
-			\hline
-			21 de março a 21 de junho & Outono\\
-			21 de junho a 23 de setembro & Inverno\\
-			23 de setembro a 21 de dezembro & Primavera\\
-			21 de dezembro a 21 de março & Verão\\
-			\hline
-		\end{tabular*}
-		\fonte{Elaborada pela autora.}
-	\end{minipage}
-\end{table}
-
-\section{Resumo}
-O resumo deve conter de 100 a 500 palavras. No resumo não deve haver citações e indica-se que essa seja a última seção do texto a ser escrita. Veja abaixo uma sugestão de organização e exemplo de resumo de \citetexto{Moro11}.
-
-Sugestão (uma a três linhas para cada item):
-\begin{itemize}
-	\item Contexto geral e específico;
-	\item Questão/problema sendo investigado (propósito do trabalho);
-	\item Estado-da-arte (por que precisa de uma solução nova/melhor);
-	\item Solução (nome da proposta, metodologia básica sem detalhes, quais características respondem as questões iniciais, interpretação dos resultados, conclusões).
-\end{itemize}
-
-Exemplo (SANTOS et al., 2008 apud \citealp{Moro11}):
-\begin{quote}
-CONTEXTO: A Web é abundante em páginas que armazenam  dados de forma implícita. PROBLEMA: Em muitos casos, estes dados estão presentes em textos semiestruturados sem a presença de delimitadores explícitos e organizados em uma estrutura também implícita. SOLUÇÃO: Este artigo apresenta uma nova abordagem para extração em textos semi-estruturados baseada em Modelos de Markov Ocultos (Hidden Markov Models - HMM). ESTADO-DA-ARTE e MÉTODO PROPOSTO: Ao contrário de outros trabalhos baseados em HMM, a abordagem proposta dá ênfase à extração de metadados, além dos dados propriamente ditos. Esta abordagem consiste no uso de uma estrutura aninhada de HMMs, onde um HMM principal identifica os atributos no texto e HMMs internos, um para cada atributo, identificam os dados e metadados. Os HMMs são gerados a partir de um treinamento com uma fração de amostras da base a ser extraída. RESULTADOS: Os experimentos realizados com anúncios de classificados retirados da Web mostram que o processo de extração alcança qualidade acima de 0,97 com a medida F, mesmo se esta fração de treinamento é pequena. 
-\end{quote}
 
 %=======================================================================
 % Exemplos de Citações e Referências Bibliográficas
@@ -363,7 +308,7 @@ Seguem algumas referências a trabalhos acadêmicos, como teses, dissertações,
 %=======================================================================
 % Referências
 %=======================================================================
-\bibliography{exemplo}
+\bibliography{TC-I}
 
 %=======================================================================
 % Exemplo de Apêndice
