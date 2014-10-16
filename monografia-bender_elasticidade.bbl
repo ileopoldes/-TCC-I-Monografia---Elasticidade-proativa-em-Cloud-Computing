@@ -1,72 +1,13 @@
 \begin{thebibliography}{\hspace{\parindent}}
 
-\bibitem[ANDERSON et~al.(1995)Anderson et~al.]{Anderson95} ANDERSON, T.~E.
-  et~al\@. Serverless network file systems. In: SYMPOSIUM ON OPERATING SYSTEMS
-  PRINCIPLES, 15., 1995, Copper Mountain Resort, Colorado.
-  \emph{Proceedings{\ldots}} [S.l.:~s.n.], 1995. p.~109--126.
+\bibitem[COUTINHO et~al.(2013)Coutinho et~al.]{coutinho2013elasticidade}
+  COUTINHO, E. et~al\@. Elasticidade em computa{\c{c}}ao na nuvem: uma
+  abordagem sistem{\'a}tica. \emph{XXXI Simp{\'o}sio Brasileiro de Redes de
+  Computadores e Sistemas Distribu{\'\i}dos (SBRC 2013)-Minicursos}, [S.l.],
+  2013.
 
-\bibitem[ASSOCIA{\c{C}}{\~A}O BRASILEIRA DE NORMAS
-  T{\'E}CNICAS(2002)Associa{\c{c}}{\~a}o Brasileira de Normas
-  T{\'e}cnicas]{NBR6023:2002} ASSOCIA{\c{C}}{\~A}O BRASILEIRA DE NORMAS
-  T{\'E}CNICAS. \emph{{NBR}~6023}: informa{\c{c}}{\~a}o e
-  documenta{\c{c}}{\~a}o -- refer{\^e}ncias -- elabora{\c{c}}{\~a}o. Rio de
-  Janeiro, 2002.
-
-\bibitem[BIBLIOTECA DA UNISINOS(2011)Biblioteca da UNISINOS]{Biblioteca11}
-  BIBLIOTECA DA UNISINOS. \emph{Guia para elabora{\c{c}}{\~a}o de trabalhos
-  acad{\^e}micos (artigo de peri{\'o}dico, disserta{\c{c}}{\~a}o, projeto,
-  trabalho de conclus{\~a}o de curso e tese)}. S{\~a}o Leopoldo, 2011.
-  Dispon{\'\i}vel em:
-  $<$http://www.unisinos.br/biblioteca/images/stories/downloads/guia\_bibliote%
-ca\_abnt\_2011.pdf$>$. Acesso em: 15 jun.~2011.
-
-\bibitem[BUFORD; YU; LUA(2009)Buford, Yu e Lua]{Buford09} BUFORD, J.~F.; YU,
-  H.; LUA, E.~K\@. \emph{{P2P}}: networking and applications. Burlington, MA:
-  Morgan Kaufmann, 2009.
-
-\bibitem[CHAM(2012)Cham]{Cham12} CHAM, J\@. \emph{Ph{D} comics}.
-  Dispon{\'\i}vel em: <http://phd.stanford.edu/comics>. Acesso em: ago.~2012.
-
-\bibitem[FLAUMANN(2005)Flaumann]{Flaumann05} FLAUMANN, F.~G\@. \emph{Uma
-  proposta de distribui{\c{c}}{\~a}o do servidor de {GNU}s em clusters}. 2005.
-  125~p. Tese (Doutorado em Ci{\^e}ncia da Computa{\c{c}}{\~a}o) --- Programa
-  de P{\'o}s-Gradua{\c{c}}{\~a}o em Computa{\c{c}}{\~a}o, UFRGS, Porto~Alegre,
-  2005.
-
-\bibitem[HAYES(2008)Hayes]{Hayes08} HAYES, B\@. Cloud computing.
-  \emph{Communications of the ACM}, New York, v.~51, n.~7, p.~9--11, July~2008.
-
-\bibitem[HEXSEL(2011)Hexsel]{Hexsel11} HEXSEL, R\@. \emph{Pequeno manual da
-  escrita t{\'e}cnica}. Dispon{\'\i}vel em:
-  $<$http://www.inf.ufpr.br/info/techrep/RT\_DINF004\_2004.pdf$>$. Acesso em: 1
-  maio 2011.
-
-\bibitem[KUROSE; ROSS(2010)Kurose e Ross]{Kurose10ptbr} KUROSE, J.~F.; ROSS,
-  K.~W\@. \emph{Redes de computadores e a {I}nternet}: uma abordagem top-down.
-  5.~ed. S{\~a}o~Paulo: Addison Wesley, 2010.
-
-\bibitem[LAADAN; NIEH(2010)Laadan e Nieh]{Laadan10} LAADAN, O.; NIEH, J\@.
-  Operating system virtualization: practice and experience. In: ANNUAL HAIFA
-  EXPERIMENTAL SYSTEMS CONFERENCE, 3., 2010, Haifa, Israel.
-  \emph{Proceedings{\ldots}} [S.l.:~s.n.], 2010.
-
-\bibitem[LAWTON(2008)Lawton]{Lawton08} LAWTON, G\@. Moving the {OS} to the web.
-  \emph{IEEE Computer}, Los Alamitos, v.~41, n.~3, p.~16--19, Mar.~2008.
-
-\bibitem[MORO(2011)Moro]{Moro11} MORO, M\@. \emph{A arte de escrever artigos
-  cient{\'\i}ficos}. Dispon{\'\i}vel em:
-  $<$http://homepages.dcc.ufmg.br/$\sim$mirella/doku.php?id=escrita$>$. Acesso
-  em: 1 maio 2011.
-
-\bibitem[TANENBAUM(2003)Tanenbaum]{Tanenbaum03} TANENBAUM, A.~S\@.
-  \emph{Computer networks}. 4.~ed. Upper Saddle River: Prentice Hall PTR, 2003.
-  892~p.
-
-\bibitem[TEIXEIRA(2009)Teixeira]{Teixeira09} TEIXEIRA, M.~A\@.
-  \emph{lattes2latex}: uma ferramenta para conversão de currículos {L}attes
-  em documentos {L}a{T}e{X}. 2009. 82~p. Trabalho de Conclus{\~a}o de Curso
-  (Bacharelado em Ci{\^e}ncia da Computa{\c{c}}{\~a}o) --- Instituto de
-  Inform{\'a}tica, Universidade Federal do Rio Grande do Sul, Porto Alegre,
-  2009.
+\bibitem[LORIDO-BOTR(2012)Lorido-botr]{Lorido-botr2012} LORIDO-BOTR, T\@.
+  {Auto-scaling Techniques for Elastic Applications in Cloud Environments}. },
+  [S.l.], p.~1--44, 2012.
 
 \end{thebibliography}
