@@ -1,8 +1,12 @@
 \begin{thebibliography}{\hspace{\parindent}}
 
-\bibitem[COUTINHO; GOMES(????)Coutinho e Gomes]{coutinho} COUTINHO, E.~F.;
+\bibitem[COUTINHO; GOMES(2013)Coutinho e Gomes]{coutinho} COUTINHO, E.~F.;
   GOMES, D.~G\@. {Elasticidade em Computa\c{c}\~{a}o na Nuvem: uma abordagem
-  sistem\'{a}tica}. }, [S.l.].
+  sistem\'{a}tica}. }, [S.l.], p.~8, 2013.
+
+\bibitem[EHLERS(2009)Ehlers]{Ehlers2009} EHLERS, R.~S\@. {Sum ´}.
+  \emph{Laborat\'{o}rio de Estat\'{\i}stica e Geoinforma\c{c}\~{a}o.
+  Universidade Federal do Paran\'{a}}, [S.l.], 2009.
 
 \bibitem[GALANTE; BONA(2012)Galante e Bona]{Galante2012} GALANTE, G.; BONA, L.
   C. E.~D\@. {A Survey on Cloud Computing Elasticity}. \emph{2012 IEEE Fifth

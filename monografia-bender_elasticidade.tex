@@ -294,25 +294,35 @@ Quanto às políticas que regem o gerenciamento de recursos pela escalabilidade,
 \subsection{Implementação de elasticidade}
 Os métodos empregados na implementação das soluções de elasticidade encontrados na literatura podem ser categorizados em três tipos: replicação, migração e redimencionamento. A replicação nada mais é que o escalonamento horizontal, descrito anteriormente. E é sem dúvida o método mais utilizado para prover elasticidade, tanto em provedores comerciais quanto em trabalhos na academia \cite{Galante2012}. O redimencionamento é a implementação do escalonamento vertical, o trabalho de \cite{Wilkes2010} emprega esta técnica e iremos analisá-lo melhor na seção de trabalhos relacionados. Por último, a migração é a transferência de uma máquina virtual entre servidores, geralmente esta técnica é usada para simular o comportamento obtido com o redimensionamento em nuvens que não permitem este tipo de ação \cite{Galante2012}.
 
-\subsection{Avaliação de desempenho}
-
-
-ambientes, carga de trabalho e teste
-
-\section{Predição}
-
+\section{Análise de Séries Temporais}
+%TODO complementar a seção
 analise de series temporais (maybe a section)
 
 \section{Séries Temporais}
-exemplos, objetivos, estacionaridade
+De acordo com \cite{Ehlers2009}, uma série temporal é uma coleção de observações feitas sequencialmente ao longo do tempo. Ele aponta como uma das características mais importantes deste tipo de dado o fato de haver dependência entre observações vizinhas. Ou seja, em séries temporais a ordem dos dados tem grande relevância. As séries temporais estão presentes em vários campos do conhecimento tais como: economia, medicina e metereologia.
 
 \subsection{Conceitos básicos}
+Quando realizamos observações continuamente no tempo, chamamos de série contínua. As séries também podem ser ditas discretas, quando as observações são realizadas em tempos específicos, normalmente com períodos iguais. Também podemos discretizar séries contínuas ao registrar observações em determinados intervalos de tempo.
+
+\cite{Ehlers2009} cita os seguintes objetivos gerais para estudo de séries temporais:
+
+\begin{itemize}
+	\item Descrever propriedades da série, seus padrões, existência de sazonalidade ou variação cíclica.
+	\item Explicar variações em um determinada série através das variações observadas em outra série temporal.
+	\item Controlar processos através da análise de séries temporais, através das quais podemos identificar fatores de qualidade.
+	\item Predizer valores futuros com base em observações passadas.Este último objetivo das séries temporais é objeto de estudo deste trabalho.
+\end{itemize}
+
+Quando uma série apresenta um comportamento que se repete ao longo do tempo, em intervalos específicos normalmente anuais, dizemos que esta apresenta um comportamento sazonal. Para ilustrar, é natural imaginarmos um aumento no número de vendas de uma determinada loja de brinquedos no período próximo ao natal, ou o aumento de requisições de um determinado site de comércio eletrônico em datas comemorativas. 
+
+Outra característica importante pertinente às séries temporais é a tendência. Esta pode ser de crescimento ou decrescimento, e apresenta diversos padrões: linear, exponencial e de amortecimento. No primeiro, observamos um padrão mais ou menos constante, no segundo a alteração dentro de um período de tempo está atrelada a um fator. Por exemplo, aumento de vendas em 1.4 ao ano. E por último, o padrão de amortecimento apresenta uma variação percentual em relação ao período anterior. Um aumento de 50\[%\] em vendas em relação ao ano anterior, se no primeiro ano tivermos 1000 vendas esperadas, então no segundo teremos 500 e assmi por diante.
+
 \subsection*{Processo estocástico}
-\subsection*{Modelos de decomposição}
-\subsection*{Modelos de suavizão}
-\subsection*{Modelos de séries temporais não estacionárias}
-\subsection*{Previs~ao com modelos ARIMA}
-\subsection{An´alise de S´eries Temporais}
+%\subsection*{Modelos de decomposição}
+%\subsection*{Modelos de suavizão}
+%\subsection*{Modelos de séries temporais não estacionárias}
+%\subsection*{Previs~ao com modelos ARIMA}
+%\subsection{An´alise de S´eries Temporais}
 
 %
 %	TRABALHOS RELACIONADOS

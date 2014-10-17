@@ -39,45 +39,45 @@ Warning--"{PRESS" isn't a brace-balanced string for entry Wilkes2010
 while executing--line 1430 of file unisinos.bst
 Warning--": PRedictive Elastic ReSource Scaling for cloud systems}" isn't a brace-balanced string for entry Wilkes2010
 while executing--line 1430 of file unisinos.bst
-You've used 6 entries,
+You've used 7 entries,
             2491 wiz_defined-function locations,
-            645 strings with 5556 characters,
-and the built_in function-call counts, 6282 in all, are:
-= -- 730
-> -- 45
-< -- 84
-+ -- 399
-- -- 29
-* -- 287
-:= -- 523
-add.period$ -- 18
-call.type$ -- 6
-change.case$ -- 60
+            651 strings with 5700 characters,
+and the built_in function-call counts, 6825 in all, are:
+= -- 774
+> -- 50
+< -- 95
++ -- 424
+- -- 31
+* -- 328
+:= -- 569
+add.period$ -- 21
+call.type$ -- 7
+change.case$ -- 68
 chr.to.int$ -- 0
-cite$ -- 6
-duplicate$ -- 822
-empty$ -- 253
-format.name$ -- 63
-if$ -- 1382
+cite$ -- 7
+duplicate$ -- 884
+empty$ -- 293
+format.name$ -- 70
+if$ -- 1493
 int.to.chr$ -- 0
 int.to.str$ -- 0
 missing$ -- 0
-newline$ -- 15
-num.names$ -- 30
-pop$ -- 130
+newline$ -- 17
+num.names$ -- 35
+pop$ -- 149
 preamble$ -- 1
-purify$ -- 12
+purify$ -- 14
 quote$ -- 0
-skip$ -- 426
+skip$ -- 454
 stack$ -- 0
-substring$ -- 372
-swap$ -- 505
+substring$ -- 395
+swap$ -- 548
 text.length$ -- 0
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 36
+type$ -- 42
 warning$ -- 0
-while$ -- 40
+while$ -- 47
 width$ -- 0
-write$ -- 8
+write$ -- 9
 (There were 3 error messages)
