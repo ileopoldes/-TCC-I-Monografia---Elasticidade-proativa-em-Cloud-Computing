@@ -219,7 +219,7 @@ Um exemplo clássico de comportamento com alto grau de variação é encontrado 
 
 A solução oferecida pela cloud computing é justamente disponibilizar recursos computacionais para as empresas de acordo com suas respectivas demandas. Desta forma, os usuários não precisam arcar com o alto custo de manter um parque de máquinas, ou mesmo com as questões relacionadas a gestão e aquisição delas. E tudo isto a um custo bastante baixo, com uma disponibilidade imediata de contratação e um gerenciamento bastante simplificado.
 
-Neste contexto, uma das características mais importantes da computação em nuvem é a elasticidade. Ou seja, a capacidade do ambiente computacional aumentar ou diminuir os recursos demandados pelo usuário. Esta capacidade se apresenta tanto em nível de instâncias de máquinas virtuais e/ou nós de computação, quanto em nível de CPU, memória e largura de banda de rede.Uma lista mais completa das características essenciais de um ambiente em nuvem pode ser encontrada em \cite{coutinho2013elasticidade}, que cita \textit{"elasticidade rápida"} como uma destas características.
+Neste contexto, uma das características mais importantes da computação em nuvem é a elasticidade. Ou seja, a capacidade do ambiente computacional aumentar ou diminuir os recursos demandados pelo usuário. Esta capacidade se apresenta tanto em nível de instâncias de máquinas virtuais e/ou nós de computação, quanto em nível de CPU, memória e largura de banda de rede.Uma lista mais completa das características essenciais de um ambiente em nuvem pode ser encontrada em \cite{coutinho}, que cita \textit{"elasticidade rápida"} como uma destas características.
 
 A política de alocação de recursos em ambientes de computação em nuvem pode ser tanto manual quanto automática. Para a abordagem automática, temos ainda duas classificações: reativa e proativa. Na primeira, o usuário define marcos (thresholds) para um mecanismo de regra-condição-ação através dos quais o sistema aloca mais recursos (threshold superior) ou os consolida (threshold inferior). Embora, esta primeira abordagem seja chamada de automática, se faz necessária a intervenção do usuário para especificar as regras, bem como conhecimento da ferramenta de nuvem. Por outro lado, a abordagem proativa usa técnicas de predição para identificar padrões e antecipar a alocação ou consolidação de recursos de forma automática, sem a intervenção do usuário.
 
@@ -233,8 +233,6 @@ A análise preditiva baseada em séries temporais é uma destas estratégias que
 
 A análise de séries temporais pode ser usada para encontrar padrões de repetição na carga de trabalho de uma aplicação, ou para tentar prever valores futuros. 
 
-%TODO: sei que falta alguma coisa aqui para complementar e deixar mais claro a questão da pesquisa
-
 \section{Objetivos}
 O objetivo deste trabalho é apresentar uma proposta para análise preditiva que possa servir de base na implementação da elasticidade proativa em ambientes de computação em nuvem.
 
@@ -246,14 +244,80 @@ Este texto está organizado em cinco seções. Primeiramente, na seção 2, irem
 %=======================================================================
 % Escrevendo o Texto
 %=======================================================================
+
+%
+%	FUNDAMENTAÇAO TEORICA
+%
 \chapter{Fundamentação Teórica}
 
-\section{Séries Temporais}
-Como regra geral, use os comandos tradicionais do \LaTeX\ para formatar seu texto.  Neste documento procuramos demonstrar os comandos mais comumente utilizados em monografias acadêmicas.
+\section{Computação em Nuvem}
+Segundo \cite{Lorido-botr2012}, cloud computing é uma tecnologia emergente que está se tornando muito popular. E grande parte disso devesse a sua característica elástica, a qual permite aos usuários que adquiram e liberem recursos sob demanda, e paguem somente pelos recursos que eles precisam (modelo pay-as-you-go). Estes recursos se apresentam geralmente na forma de Máquinas Virtuais (Virtual Machines - VM). Há três principais modelos de serviços associados com a computação em nuvem, são eles:
 
-Neste capítulo apresentamos alguns exemplos de como colocar figuras e tabelas no seu texto.
+%TODO conseguir referências bibliográficas para os exemplos citados abaixo
+\begin{itemize}
+	\item Infraestrutura como um serviço (IaaS) designa o provisionamento de recursos como rede, processamento, armazenamento e banda. Normalmente o usuário não administra ou controla a infraestrutura da nuvem, mas tem gerenciamento sobre os sistemas operacionais, armazenamento, aplicativos implantados, etc . Exemplos de infraestrutura como serviço são: Amazon EC2 e Google Compute Engine.
+	\item Platform-as-a-Service (PaaS) designa ambientes de programação e ferramentas suportadas pelos provedores de nuvem que podem ser usadas pelos consumidores para construir e implantar aplicações na infraestrutura da nuvem. O usu Exemplos de plataforma como serviços são: Amazon Elastic Beanstalk, Heroku, Google App Engine e Microsoft Windows Azure.
+	\item Software-as-a-Service (SaaS) designa aplicações hospedadas pelo fornecedor, sobre as quais o cliente não tem visibilidade da plataforma ou infraestrutura em que está implantada. Exemplos: Google Apps e Microsoft Office 365.
+\end{itemize}
+
+A computação em nuvem também pode ser caracterizada pelo seu modelo de implantação, o qual define restrição ou abertura de acesso, dentre outras coisas. Tais modelos podem ser: nuvem privada, nuvem pública, nuvem comunidade e nuvem híbrida. Para os objetivos deste trabalho, esta divisão é indiferente. Uma melhor definição destes modelos pode ser encontrada em \citep{coutinho}.
+
+\section{Elasticidade}
+
+Sem dúvida uma das principais razões para que a computação em nuvem seja utilizada é a capacidade de adquirir recursos de uma maneira dinâmica. Esta característica faz com que, para o cliente, a nuvem pareça possuir recursos computacionais infinitos. Por outro lado, para o provedor, o desafio de manter esta ilusão é enorme, pois é muito difícil compreender quais são os requisitos de elasticidade de uma aplicação e da carga de trabalho que ela apresenta.
+
+Segundo o National Institute of Standards and Technology (NIST) em sua definição de cloud computing \cite{Mell2012}, o conceito de elasticidade é a capacidade de rápido provisionamento e desprovisionamento, com capacidade de recursos virtuais praticamente infinita e quantidade adquirível sem restrição a qualquer momento. \citep{Righi2013} também cita a importância da noção de tempo para o conceito de elasticidade e explica a diferença entre esta e a escalabilidade, conceitos muitas vezes confundidos. A escalabilidade se relaciona à capacidade do sistema ser expandido e este conceito é livre da noção de tempo.
+
+Existem várias definições para elasticidade, e em \citep{Coutinho} encontramos uma análise das diferentes definições, após o que o autor sugere sua própria definição para o conceito: \textit{"Capacidade de adicionar e remover recursos de forma automática de acordo com a carga de trabalho sem interrupções e utilizando os recursos de forma otimizada"}.
+
+Nos próximos parágrafos abordaremos algumas características da elasticidade.
+
+\subsection{Ação de alocação de recursos}
+A ação de alocação de recursos, ou modalidade da ação da elasticidade pode ser categorizada de duas formas: 
+
+\begin{enumerate}
+	\item Escalonamento horizontal, segundo \cite{Lorido-botr2012} é adicionar réplicas de novos servidores e balanceadores de carga para distribuir a carga entre todas as réplicas disponíveis. Ou seja, é possível aumentar ou diminuir o número de instâncias de máquinas virtuais, ou até mesmo migrá-las para novos nós de processamento.
+	\item Escalonamento vertical é a mudança de alocação de recursos em tempo de execução para uma máquina que está em operação, com alocação ou desalocação de memória, CPU, rede, etc.
+\end{enumerate}
+
+\subsection{Politica de alocação de recursos}
+Quanto às políticas que regem o gerenciamento de recursos pela escalabilidade, temos duas abordagens segundo \cite{Galante2012}:
+
+\begin{enumerate}
+	\item Manual quando há necessidade de uma ação do usuário para alterar o aprovisionamento de recursos, a qual pode se dar através de uma interface de programação (API) ou uma interface de gerenciamento oferecida pelo \textit{middleware}.
+	\item Automática quando o provedor inclui um serviço completo de monitoramento e alocação automática de recursos. Esta abordagem ainda se subdivide em reativa e proativa.
+	A política automática reativa utiliza-se de mecanismos do tipo regra-condição-ação, estabelecendo um limite superior, que quando atingido, dispara regras específicas que fazem a ação de alocar recursos de acordo com o que está estipulado nas referidas regras. De igual forma, um limiar inferior serve para consolidar recursos quando atingido o limite estipulado. Estes limiares são conhecidos na literatura como \textit{thresholds}.
+	Por outro lado, a política proativa usa técnicas de predição para automaticamente escalar recursos. O objetivo final de um sistema de auto escalonamento de recursos é ajustar a alocação e consolidação de recursos automaticamente para minimizar custos enquanto garante o cumprimento dos objetivos de nível de serviço (SLO), conforme \cite{Lorido-botr2012}.
+	A questão do escalonamento automático pode ser implementada por diversas abordagens e uma discussão bastante extensa a este respeito pode ser encontrada em \cite{Lorido-botr2012}. 	Para o escopo deste trabalho focaremos na abordagem automática proativa, com o uso de séries temporais, as quais serão discutidas nas próximas seções, as demais abordagens não serão discutidas neste trabalho.
+\end{enumerate}
+
+\subsection{Implementação de elasticidade}
+Os métodos empregados na implementação das soluções de elasticidade encontrados na literatura podem ser categorizados em três tipos: replicação, migração e redimencionamento. A replicação nada mais é que o escalonamento horizontal, descrito anteriormente. E é sem dúvida o método mais utilizado para prover elasticidade, tanto em provedores comerciais quanto em trabalhos na academia \cite{Galante2012}. O redimencionamento é a implementação do escalonamento vertical, o trabalho de \cite{Wilkes2010} emprega esta técnica e iremos analisá-lo melhor na seção de trabalhos relacionados. Por último, a migração é a transferência de uma máquina virtual entre servidores, geralmente esta técnica é usada para simular o comportamento obtido com o redimensionamento em nuvens que não permitem este tipo de ação \cite{Galante2012}.
+
+\subsection{Avaliação de desempenho}
+
+
+ambientes, carga de trabalho e teste
 
 \section{Predição}
+
+analise de series temporais (maybe a section)
+
+\section{Séries Temporais}
+exemplos, objetivos, estacionaridade
+
+\subsection{Conceitos básicos}
+\subsection*{Processo estocástico}
+\subsection*{Modelos de decomposição}
+\subsection*{Modelos de suavizão}
+\subsection*{Modelos de séries temporais não estacionárias}
+\subsection*{Previs~ao com modelos ARIMA}
+\subsection{An´alise de S´eries Temporais}
+
+%
+%	TRABALHOS RELACIONADOS
+%
+\chapter{Trabalhos Relacionados}
 
 
 %=======================================================================

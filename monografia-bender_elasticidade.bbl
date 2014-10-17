@@ -1,13 +1,30 @@
 \begin{thebibliography}{\hspace{\parindent}}
 
-\bibitem[COUTINHO et~al.(2013)Coutinho et~al.]{coutinho2013elasticidade}
-  COUTINHO, E. et~al\@. Elasticidade em computa{\c{c}}ao na nuvem: uma
-  abordagem sistem{\'a}tica. \emph{XXXI Simp{\'o}sio Brasileiro de Redes de
-  Computadores e Sistemas Distribu{\'\i}dos (SBRC 2013)-Minicursos}, [S.l.],
-  2013.
+\bibitem[COUTINHO; GOMES(????)Coutinho e Gomes]{coutinho} COUTINHO, E.~F.;
+  GOMES, D.~G\@. {Elasticidade em Computa\c{c}\~{a}o na Nuvem: uma abordagem
+  sistem\'{a}tica}. }, [S.l.].
+
+\bibitem[GALANTE; BONA(2012)Galante e Bona]{Galante2012} GALANTE, G.; BONA, L.
+  C. E.~D\@. {A Survey on Cloud Computing Elasticity}. \emph{2012 IEEE Fifth
+  International Conference on Utility and Cloud Computing}, [S.l.], n.~1,
+  p.~263--270, Nov.~2012.
 
 \bibitem[LORIDO-BOTR(2012)Lorido-botr]{Lorido-botr2012} LORIDO-BOTR, T\@.
   {Auto-scaling Techniques for Elastic Applications in Cloud Environments}. },
   [S.l.], p.~1--44, 2012.
+
+\bibitem[MELL; GRANCE(2012)Mell e Grance]{Mell2012} MELL, P.; GRANCE, T\@. {The
+  NIST Definition of Cloud Computing: recommendations of the national institute
+  of standards and technology (2011)}. \emph{URL http://csrc. nist.
+  gov/publications/nistpubs/800-145/ \ldots}, [S.l.], 2012.
+
+\bibitem[RIGHI(2013)Righi]{Righi2013} RIGHI, R. D.~R\@. {Elasticidade em cloud
+  computing: conceito, estado da arte e novos desafios}. \emph{Revista
+  Brasileira de Computa\c{c}\~{a}o Aplicada}, [S.l.], v.~5, n.~2, p.~2--17,
+  Nov.~2013.
+
+\bibitem[WILKES(2010)Wilkes]{Wilkes2010} WILKES, J\@. {PRESS: predictive
+  elastic resource scaling for cloud systems}. \emph{2010 International
+  Conference on Network and Service Management}, [S.l.], p.~9--16, Oct.~2010.
 
 \end{thebibliography}

@@ -1,7 +1,13 @@
 This is BibTeX, Version 0.99c (TeX Live 2009/Debian)
 The top-level auxiliary file: monografia-bender_elasticidade.aux
 The style file: unisinos.bst
+Case mismatch error between cite keys Coutinho and coutinho
+---line 22 of file monografia-bender_elasticidade.aux
+ : \citation{Coutinho
+ :                   }
+I'm skipping whatever remains of this command
 Database file #1: tcc1.bib
+Warning--I didn't find a database entry for "shumway2000time"
 Warning--I didn't find a database entry for "Biblioteca11"
 Warning--I didn't find a database entry for "NBR6023:2002"
 Warning--I didn't find a database entry for "Tanenbaum03"
@@ -13,47 +19,65 @@ Warning--I didn't find a database entry for "Laadan10"
 Warning--I didn't find a database entry for "Anderson95"
 Warning--I didn't find a database entry for "Teixeira09"
 Warning--I didn't find a database entry for "Flaumann05"
+Warning--"{Elasticidade em Computa\c{c}\~{a}o na Nuvem" isn't a brace-balanced string for entry coutinho
+while executing--line 1430 of file unisinos.bst
+Warning--": Uma Abordagem Sistem\'{a}tica}" isn't a brace-balanced string for entry coutinho
+while executing--line 1430 of file unisinos.bst
+`journal' is a missing field, not a string, for entry coutinho
+while executing---line 1430 of file unisinos.bst
 `journal' is a missing field, not a string, for entry Lorido-botr2012
 while executing---line 1430 of file unisinos.bst
-You've used 2 entries,
+Warning--"{The NIST Definition of Cloud Computing" isn't a brace-balanced string for entry Mell2012
+while executing--line 1430 of file unisinos.bst
+Warning--": Recommendations of the National Institute of Standards and Technology (2011)}" isn't a brace-balanced string for entry Mell2012
+while executing--line 1430 of file unisinos.bst
+Warning--"{Elasticidade em cloud computing" isn't a brace-balanced string for entry Righi2013
+while executing--line 1430 of file unisinos.bst
+Warning--": conceito, estado da arte e novos desafios}" isn't a brace-balanced string for entry Righi2013
+while executing--line 1430 of file unisinos.bst
+Warning--"{PRESS" isn't a brace-balanced string for entry Wilkes2010
+while executing--line 1430 of file unisinos.bst
+Warning--": PRedictive Elastic ReSource Scaling for cloud systems}" isn't a brace-balanced string for entry Wilkes2010
+while executing--line 1430 of file unisinos.bst
+You've used 6 entries,
             2491 wiz_defined-function locations,
-            620 strings with 4943 characters,
-and the built_in function-call counts, 2414 in all, are:
-= -- 302
-> -- 15
-< -- 27
-+ -- 163
-- -- 7
-* -- 81
-:= -- 210
-add.period$ -- 6
-call.type$ -- 2
-change.case$ -- 16
+            645 strings with 5556 characters,
+and the built_in function-call counts, 6282 in all, are:
+= -- 730
+> -- 45
+< -- 84
++ -- 399
+- -- 29
+* -- 287
+:= -- 523
+add.period$ -- 18
+call.type$ -- 6
+change.case$ -- 60
 chr.to.int$ -- 0
-cite$ -- 2
-duplicate$ -- 334
-empty$ -- 80
-format.name$ -- 19
-if$ -- 544
+cite$ -- 6
+duplicate$ -- 822
+empty$ -- 253
+format.name$ -- 63
+if$ -- 1382
 int.to.chr$ -- 0
 int.to.str$ -- 0
 missing$ -- 0
-newline$ -- 7
-num.names$ -- 10
-pop$ -- 55
+newline$ -- 15
+num.names$ -- 30
+pop$ -- 130
 preamble$ -- 1
-purify$ -- 4
+purify$ -- 12
 quote$ -- 0
-skip$ -- 166
+skip$ -- 426
 stack$ -- 0
-substring$ -- 151
-swap$ -- 183
+substring$ -- 372
+swap$ -- 505
 text.length$ -- 0
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 12
+type$ -- 36
 warning$ -- 0
-while$ -- 13
+while$ -- 40
 width$ -- 0
-write$ -- 4
-(There was 1 error message)
+write$ -- 8
+(There were 3 error messages)
