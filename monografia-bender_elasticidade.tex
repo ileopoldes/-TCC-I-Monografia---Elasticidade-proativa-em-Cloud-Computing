@@ -287,19 +287,19 @@ Quanto às políticas que regem o gerenciamento de recursos pela escalabilidade,
 	\item Manual quando há necessidade de uma ação do usuário para alterar o aprovisionamento de recursos, a qual pode se dar através de uma interface de programação (API) ou uma interface de gerenciamento oferecida pelo \textit{middleware}.
 	\item Automática quando o provedor inclui um serviço completo de monitoramento e alocação automática de recursos. Esta abordagem ainda se subdivide em reativa e proativa.
 	A política automática reativa utiliza-se de mecanismos do tipo regra-condição-ação, estabelecendo um limite superior, que quando atingido, dispara regras específicas que fazem a ação de alocar recursos de acordo com o que está estipulado nas referidas regras. De igual forma, um limiar inferior serve para consolidar recursos quando atingido o limite estipulado. Estes limiares são conhecidos na literatura como \textit{thresholds}.
+\end{enumerate}	
 	Por outro lado, a política proativa usa técnicas de predição para automaticamente escalar recursos. O objetivo final de um sistema de auto escalonamento de recursos é ajustar a alocação e consolidação de recursos automaticamente para minimizar custos enquanto garante o cumprimento dos objetivos de nível de serviço (SLO), conforme \cite{Lorido-botr2012}.
-	A questão do escalonamento automático pode ser implementada por diversas abordagens e uma discussão bastante extensa a este respeito pode ser encontrada em \cite{Lorido-botr2012}. 	Para o escopo deste trabalho focaremos na abordagem automática proativa, com o uso de séries temporais, as quais serão discutidas nas próximas seções, as demais abordagens não serão discutidas neste trabalho.
-\end{enumerate}
+	A questão do escalonamento automático pode ser implementada por diversas abordagens e uma discussão bastante extensa a este respeito pode ser encontrada em \cite{Lorido-botr2012}, que faz uma classificação de técnicas puramente reativas, proativas e cita algumas mistas. 	Para o escopo deste trabalho focaremos na abordagem automática proativa, com o uso de séries temporais, as quais serão discutidas nas próximas seções, as demais abordagens não serão discutidas neste trabalho.
 
 \subsection{Implementação de elasticidade}
 Os métodos empregados na implementação das soluções de elasticidade encontrados na literatura podem ser categorizados em três tipos: replicação, migração e redimencionamento. A replicação nada mais é que o escalonamento horizontal, descrito anteriormente. E é sem dúvida o método mais utilizado para prover elasticidade, tanto em provedores comerciais quanto em trabalhos na academia \cite{Galante2012}. O redimencionamento é a implementação do escalonamento vertical, o trabalho de \cite{Wilkes2010} emprega esta técnica e iremos analisá-lo melhor na seção de trabalhos relacionados. Por último, a migração é a transferência de uma máquina virtual entre servidores, geralmente esta técnica é usada para simular o comportamento obtido com o redimensionamento em nuvens que não permitem este tipo de ação \cite{Galante2012}.
 
 \section{Análise de Séries Temporais}
-%TODO complementar a seção
-analise de series temporais (maybe a section)
+Para analisar séries temporais, temos dois caminhos que podem ser usados ao mesmo tempo em uma solução, inclusive. Uma é a abordagem do dominio do tempo e a outra a abordagem do domínio de frequência. No domínio do tempo, focamos em analisar a correlação entre pontos adjacentes de uma série com a dependência dos valores atuais com os valores no passado. Já na abordagem de domínio de frequência, nos preocupamos com as características de periodicidade. Na maioria dos casos o resultado obtido da aplicação dessas abordagens é semelhante para séries longas, mas segundo \cite{Shumway2000}, o desempenho para observações curtas é melhor quando realizado no domínio do tempo.
 
 \section{Séries Temporais}
 De acordo com \cite{Ehlers2009}, uma série temporal é uma coleção de observações feitas sequencialmente ao longo do tempo. Ele aponta como uma das características mais importantes deste tipo de dado o fato de haver dependência entre observações vizinhas. Ou seja, em séries temporais a ordem dos dados tem grande relevância. As séries temporais estão presentes em vários campos do conhecimento tais como: economia, medicina e metereologia.
+Elas podem ser utilizadas para encontrar padrões em uma carga de trabalho de um servidor, por exemplo. Ou para tentar predizer os valores futuros desta carga. Em ambos os casos a informação necessária para aplicação da técnica é uma lista das \textit{n} últimas observações da série temporal, chamada \textit{janela de entrada}.
 
 \subsection{Conceitos básicos}
 Quando realizamos observações continuamente no tempo, chamamos de série contínua. As séries também podem ser ditas discretas, quando as observações são realizadas em tempos específicos, normalmente com períodos iguais. Também podemos discretizar séries contínuas ao registrar observações em determinados intervalos de tempo.
@@ -315,14 +315,12 @@ Quando realizamos observações continuamente no tempo, chamamos de série cont�
 
 Quando uma série apresenta um comportamento que se repete ao longo do tempo, em intervalos específicos normalmente anuais, dizemos que esta apresenta um comportamento sazonal. Para ilustrar, é natural imaginarmos um aumento no número de vendas de uma determinada loja de brinquedos no período próximo ao natal, ou o aumento de requisições de um determinado site de comércio eletrônico em datas comemorativas. 
 
-Outra característica importante pertinente às séries temporais é a tendência. Esta pode ser de crescimento ou decrescimento, e apresenta diversos padrões: linear, exponencial e de amortecimento. No primeiro, observamos um padrão mais ou menos constante, no segundo a alteração dentro de um período de tempo está atrelada a um fator. Por exemplo, aumento de vendas em 1.4 ao ano. E por último, o padrão de amortecimento apresenta uma variação percentual em relação ao período anterior. Um aumento de 50\[%\] em vendas em relação ao ano anterior, se no primeiro ano tivermos 1000 vendas esperadas, então no segundo teremos 500 e assmi por diante.
+Outra característica importante pertinente às séries temporais é a tendência. Esta pode ser de crescimento ou decrescimento, e apresenta diversos padrões: linear, exponencial e de amortecimento. No primeiro, observamos um padrão mais ou menos constante, no segundo a alteração dentro de um período de tempo está atrelada a um fator. Por exemplo, aumento de vendas em 1.4 ao ano. E por último, o padrão de amortecimento apresenta uma variação percentual em relação ao aumento do período anterior. Um aumento de 50\[%\] em vendas em relação ao ano anterior, se no primeiro ano tivermos 1000 vendas esperadas, então no segundo teremos 500 e assmi por diante.
 
-\subsection*{Processo estocástico}
-%\subsection*{Modelos de decomposição}
-%\subsection*{Modelos de suavizão}
-%\subsection*{Modelos de séries temporais não estacionárias}
-%\subsection*{Previs~ao com modelos ARIMA}
-%\subsection{An´alise de S´eries Temporais}
+\subsection{Modelos Probabilísticos}
+
+\subsubsection{Processos Estocásticos}
+
 
 %
 %	TRABALHOS RELACIONADOS
