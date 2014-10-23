@@ -295,11 +295,11 @@ Quanto às políticas que regem o gerenciamento de recursos pela escalabilidade,
 Os métodos empregados na implementação das soluções de elasticidade encontrados na literatura podem ser categorizados em três tipos: replicação, migração e redimencionamento. A replicação nada mais é que o escalonamento horizontal, descrito anteriormente. E é sem dúvida o método mais utilizado para prover elasticidade, tanto em provedores comerciais quanto em trabalhos na academia \cite{Galante2012}. O redimencionamento é a implementação do escalonamento vertical, o trabalho de \cite{Wilkes2010} emprega esta técnica e iremos analisá-lo melhor na seção de trabalhos relacionados. Por último, a migração é a transferência de uma máquina virtual entre servidores, geralmente esta técnica é usada para simular o comportamento obtido com o redimensionamento em nuvens que não permitem este tipo de ação \cite{Galante2012}.
 
 \section{Análise de Séries Temporais}
-Para analisar séries temporais, temos dois caminhos que podem ser usados ao mesmo tempo em uma solução, inclusive. Uma é a abordagem do dominio do tempo e a outra a abordagem do domínio de frequência. No domínio do tempo, focamos em analisar a correlação entre pontos adjacentes de uma série com a dependência dos valores atuais com os valores no passado. Já na abordagem de domínio de frequência, nos preocupamos com as características de periodicidade. Na maioria dos casos o resultado obtido da aplicação dessas abordagens é semelhante para séries longas, mas segundo \cite{Shumway2000}, o desempenho para observações curtas é melhor quando realizado no domínio do tempo.
+Para analisar séries temporais, temos dois caminhos que podem ser usados individualmente ou em conjunto. Um é a abordagem do dominio do tempo e a outra a abordagem do domínio de frequência. No domínio do tempo, focamos em analisar a correlação entre pontos adjacentes de uma série com a dependência dos valores atuais com os valores no passado. Já na abordagem de domínio de frequência, nos preocupamos com as características de periodicidade. Na maioria dos casos o resultado obtido da aplicação dessas abordagens é semelhante para séries longas, mas segundo \cite{Shumway2000}, o desempenho para observações curtas é melhor quando realizado no domínio do tempo.
+Vamos primeiramente entender melhor o que são as séries temporais e suas características mais fundamentais antes de nos aprofundarmos na questão da análise propriamente dita.
 
 \section{Séries Temporais}
-De acordo com \cite{Ehlers2009}, uma série temporal é uma coleção de observações feitas sequencialmente ao longo do tempo. Ele aponta como uma das características mais importantes deste tipo de dado o fato de haver dependência entre observações vizinhas. Ou seja, em séries temporais a ordem dos dados tem grande relevância. As séries temporais estão presentes em vários campos do conhecimento tais como: economia, medicina e metereologia.
-Elas podem ser utilizadas para encontrar padrões em uma carga de trabalho de um servidor, por exemplo. Ou para tentar predizer os valores futuros desta carga. Em ambos os casos a informação necessária para aplicação da técnica é uma lista das \textit{n} últimas observações da série temporal, chamada \textit{janela de entrada}.
+De acordo com \cite{Ehlers2009}, uma série temporal é uma coleção de observações feitas sequencialmente ao longo do tempo. Ele aponta como uma das características mais importantes deste tipo de dado o fato de haver dependência entre observações vizinhas. Ou seja, em séries temporais a ordem dos dados tem grande relevância. As séries temporais estão presentes em vários campos do conhecimento tais como: economia, medicina e metereologia. Elas podem ser utilizadas para encontrar padrões em uma carga de trabalho de um servidor, por exemplo. Ou para tentar predizer os valores futuros desta carga. Em ambos os casos a informação necessária para aplicação da técnica é uma lista das \textit{n} últimas observações da série temporal, chamada \textit{janela de entrada}, ou matematicamente conhecido como \textit{espaço de estados}.
 
 \subsection{Conceitos básicos}
 Quando realizamos observações continuamente no tempo, chamamos de série contínua. As séries também podem ser ditas discretas, quando as observações são realizadas em tempos específicos, normalmente com períodos iguais. Também podemos discretizar séries contínuas ao registrar observações em determinados intervalos de tempo.
@@ -313,13 +313,29 @@ Quando realizamos observações continuamente no tempo, chamamos de série cont�
 	\item Predizer valores futuros com base em observações passadas.Este último objetivo das séries temporais é objeto de estudo deste trabalho.
 \end{itemize}
 
-Quando uma série apresenta um comportamento que se repete ao longo do tempo, em intervalos específicos normalmente anuais, dizemos que esta apresenta um comportamento sazonal. Para ilustrar, é natural imaginarmos um aumento no número de vendas de uma determinada loja de brinquedos no período próximo ao natal, ou o aumento de requisições de um determinado site de comércio eletrônico em datas comemorativas. 
+Quando uma série apresenta um comportamento que se repete ao longo do tempo, em intervalos específicos normalmente anuais, dizemos que esta apresenta um comportamento sazonal. Para ilustrar: é natural imaginarmos um aumento no número de vendas de uma determinada loja de brinquedos no período próximo ao natal, ou o aumento de requisições de um determinado site de comércio eletrônico em datas comemorativas. 
 
-Outra característica importante pertinente às séries temporais é a tendência. Esta pode ser de crescimento ou decrescimento, e apresenta diversos padrões: linear, exponencial e de amortecimento. No primeiro, observamos um padrão mais ou menos constante, no segundo a alteração dentro de um período de tempo está atrelada a um fator. Por exemplo, aumento de vendas em 1.4 ao ano. E por último, o padrão de amortecimento apresenta uma variação percentual em relação ao aumento do período anterior. Um aumento de 50\[%\] em vendas em relação ao ano anterior, se no primeiro ano tivermos 1000 vendas esperadas, então no segundo teremos 500 e assmi por diante.
+Outra característica importante pertinente às séries temporais é a tendência. Esta pode ser de crescimento ou decrescimento, e apresenta diversos padrões: linear, exponencial e de amortecimento. No primeiro, observamos um padrão mais ou menos constante, no segundo a alteração dentro de um período de tempo está atrelada a um fator. Por exemplo, aumento de vendas em 1.4 ao ano. E por último, o padrão de amortecimento apresenta uma variação percentual em relação ao aumento do período anterior. Um aumento de 50\[%\] em vendas em relação ao ano anterior, se no primeiro ano tivermos 1000 vendas esperadas, então no segundo teremos 500 e assim por diante.
 
-\subsection{Modelos Probabilísticos}
+\subsection{Processos Estocásticos}
+Processos estocásticos são modelos probabilísticos adequados ao tratamento de dados de séries temporais. Podemos definir matematicamente processos estocásticos, segundo \cite{Ehlers2009}, da seguinte forma: uma coleção de variáveis aleatórias ordenadas no tempo e definidas em um conjunto de pontos \textit{T}, podendo ser contínuo ou discreto como mencionado anteriormente neste trabalho. A variável aleatória no tempo \textit{t}, pode ser denotada por \textit{X(t)} quando estivermos tratando do caso contínuo, no qual normalmente temos:
 
-\subsubsection{Processos Estocásticos}
+\[-\infty < \textit{t} < \infty\]
+
+para o caso discreto, com
+
+\[\textit{t} = 0,\pm1,\pm2...,\]
+
+denotaremos a variável aleatória por \textit{X}_{t}.\newline
+
+Um processo estocástico pode ser definido portanto da seguinte maneira: 
+
+\[\textit{X(t}_{1}),..., \textit{X(t}_{k})\]
+
+para qualquer conjunto de tempos e valor de } \textit{k}.\newline
+
+
+%Para descrever um processo estocástico, normalmente utilizamo-nos da média, variância e autocovariância
 
 
 %
