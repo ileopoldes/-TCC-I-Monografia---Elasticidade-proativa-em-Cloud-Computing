@@ -315,7 +315,7 @@ Quando realizamos observações continuamente no tempo, chamamos de série cont�
 
 Quando uma série apresenta um comportamento que se repete ao longo do tempo, em intervalos específicos normalmente anuais, dizemos que esta apresenta um comportamento sazonal. Para ilustrar: é natural imaginarmos um aumento no número de vendas de uma determinada loja de brinquedos no período próximo ao natal, ou o aumento de requisições de um determinado site de comércio eletrônico em datas comemorativas. 
 
-Outra característica importante pertinente às séries temporais é a tendência. Esta pode ser de crescimento ou decrescimento, e apresenta diversos padrões: linear, exponencial e de amortecimento. No primeiro, observamos um padrão mais ou menos constante, no segundo a alteração dentro de um período de tempo está atrelada a um fator. Por exemplo, aumento de vendas em 1.4 ao ano. E por último, o padrão de amortecimento apresenta uma variação percentual em relação ao aumento do período anterior. Um aumento de 50\[%\] em vendas em relação ao ano anterior, se no primeiro ano tivermos 1000 vendas esperadas, então no segundo teremos 500 e assim por diante.
+Outra característica importante pertinente às séries temporais é a tendência. Esta pode ser de crescimento ou decrescimento, e apresenta diversos padrões: linear, exponencial e de amortecimento. No primeiro, observamos um padrão mais ou menos constante, no segundo a alteração dentro de um período de tempo está atrelada a um fator. Por exemplo, aumento de vendas em 1.4 ao ano. E por último, o padrão de amortecimento apresenta uma variação percentual em relação ao aumento do período anterior. Um aumento de 50 \% em vendas em relação ao ano anterior, se no primeiro ano tivermos 1000 vendas esperadas, então no segundo teremos 500 e assim por diante.
 
 \subsection{Processos Estocásticos}
 Processos estocásticos são modelos probabilísticos adequados ao tratamento de dados de séries temporais. Podemos definir matematicamente processos estocásticos, segundo \cite{Ehlers2009}, da seguinte forma: uma coleção de variáveis aleatórias ordenadas no tempo e definidas em um conjunto de pontos \textit{T}, podendo ser contínuo ou discreto como mencionado anteriormente neste trabalho. A variável aleatória no tempo \textit{t}, pode ser denotada por \textit{X(t)} quando estivermos tratando do caso contínuo, no qual normalmente temos:
@@ -334,9 +334,20 @@ Um processo estocástico pode ser definido portanto da seguinte maneira:
 
 para qualquer conjunto de tempos e valor de } \textit{k}.\newline
 
+Para descrever um processo estocástico, normalmente utilizamo-nos da média, variância e autocovariância. A média é o valor que aponta aponta onde mais se concentram os dados da distribuição. Funciona como um ponto de equilíbrio das frequências. A variância de uma variável aleatória denota a medida de sua dispersão. Ou seja, demonstra quão longe os seus valores estão de um dado valor esperado. E por sua vez a autocovariânica é uma medida do grau de interdependência entre duas variáveis aleatórias. É também chamada de dependência linear.Estas funções são definidas abaixo respectivamente:
 
-%Para descrever um processo estocástico, normalmente utilizamo-nos da média, variância e autocovariância
+\[ \mu \textit{(t)} = E[\textit{X(t)}] \]
+\[ \sigma^{2} \textit{(t)} = Var[\textit{X(t)}] \]
+\[\gamma \textit{(t}_{1} \textit{,t}_{2}) = E[ \textit{X(t}_{1}) - \mu \textit{(t}_{1})] [ \textit{X(t}_{2}) - \mu \textit{(t}_{2})] \]
 
+Existem muitos processos estocásticos que são utilizados na especificação de modelos para séries temporais. Um levantamento de trabalhos que utilizam séries temporais na predição de valores futuros para cargas de trabalhos na construção de uma abordagem proativa de elasticidade foi realizado por \citep{Lorido-botr2012}. Neste trabalho ele cita as seguintes processos estocásticos: processos de médias móveis, processos autoregressivos, modelos mistos ARMA, suavização exponencial e abordagens baseadas em aprendizado de máquina.\citep{Lorido-botr2012} classifica estas técnicas da seguinte maneira:
+
+\begin{itemize}
+	\item Métodos de médias - podem ser usados para suavizar a série temporal com o objetivo de remover ruído ou para fazer predições. A suavização visa remover discrepâncias (\textit{outliers}, as quais podem ter um efeito devastador no processo de predição. Nesta categoria encontramos as médias móveis e a suavização exponencial, por exemplo.
+	\item Métodos autorregressivos - utilizados para predições. %TODO adicionar exemplos
+	\item Processos autoregressivos médias móveis (ARMA) - combina ambos os métodos anteriores.
+\end{itemize}
+Uma descrição bastante detalhada destes métodos pode ser encontrada em \cite{Lee2009} e em \cite{Shumway2000}.
 
 %
 %	TRABALHOS RELACIONADOS

@@ -4,14 +4,17 @@
   GOMES, D.~G\@. {Elasticidade em Computa\c{c}\~{a}o na Nuvem: uma abordagem
   sistem\'{a}tica}. }, [S.l.], p.~8, 2013.
 
-\bibitem[EHLERS(2009)Ehlers]{Ehlers2009} EHLERS, R.~S\@. {Sum ´}.
-  \emph{Laborat\'{o}rio de Estat\'{\i}stica e Geoinforma\c{c}\~{a}o.
-  Universidade Federal do Paran\'{a}}, [S.l.], 2009.
+\bibitem[EHLERS(2009)Ehlers]{Ehlers2009} EHLERS, R.~S\@. {An\'{a}lise de
+  S\'{e}ries Temporais}. \emph{Laborat\'{o}rio de Estat\'{\i}stica e
+  Geoinforma\c{c}\~{a}o. Universidade Federal do Paran\'{a}}, [S.l.], 2009.
 
 \bibitem[GALANTE; BONA(2012)Galante e Bona]{Galante2012} GALANTE, G.; BONA, L.
   C. E.~D\@. {A Survey on Cloud Computing Elasticity}. \emph{2012 IEEE Fifth
   International Conference on Utility and Cloud Computing}, [S.l.], n.~1,
   p.~263--270, Nov.~2012.
+
+\bibitem[LEE(2009)Lee]{Lee2009} LEE, A.~C\@. {Time-Series: analysis, model, and
+  forecasting}. }, [S.l.], p.~961--1020, Jan.~2009.
 
 \bibitem[LORIDO-BOTR(2012)Lorido-botr]{Lorido-botr2012} LORIDO-BOTR, T\@.
   {Auto-scaling Techniques for Elastic Applications in Cloud Environments}. },
