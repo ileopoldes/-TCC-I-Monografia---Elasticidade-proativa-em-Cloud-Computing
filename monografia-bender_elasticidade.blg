@@ -8,17 +8,6 @@ Case mismatch error between cite keys Coutinho and coutinho
 I'm skipping whatever remains of this command
 Database file #1: tcc1.bib
 Warning--I didn't find a database entry for "shumway2000time"
-Warning--I didn't find a database entry for "Biblioteca11"
-Warning--I didn't find a database entry for "NBR6023:2002"
-Warning--I didn't find a database entry for "Tanenbaum03"
-Warning--I didn't find a database entry for "Buford09"
-Warning--I didn't find a database entry for "Kurose10ptbr"
-Warning--I didn't find a database entry for "Hayes08"
-Warning--I didn't find a database entry for "Lawton08"
-Warning--I didn't find a database entry for "Laadan10"
-Warning--I didn't find a database entry for "Anderson95"
-Warning--I didn't find a database entry for "Teixeira09"
-Warning--I didn't find a database entry for "Flaumann05"
 Warning--"{Elasticidade em Computa\c{c}\~{a}o na Nuvem" isn't a brace-balanced string for entry coutinho
 while executing--line 1430 of file unisinos.bst
 Warning--": Uma Abordagem Sistem\'{a}tica}" isn't a brace-balanced string for entry coutinho
@@ -47,7 +36,7 @@ Warning--": PRedictive Elastic ReSource Scaling for cloud systems}" isn't a brac
 while executing--line 1430 of file unisinos.bst
 You've used 9 entries,
             2491 wiz_defined-function locations,
-            662 strings with 5910 characters,
+            640 strings with 5694 characters,
 and the built_in function-call counts, 9064 in all, are:
 = -- 1038
 > -- 65
