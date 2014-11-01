@@ -226,12 +226,11 @@ A política de alocação de recursos em ambientes de computação em nuvem pode
 A abordagem reativa, juntamente com as políticas manuais, é mais comum em sistemas comerciais de nuvem disponíveis na web. Enquanto que existe um esforço de pesquisas na academia para propor soluções proativas para a questão da elasticidade. Portanto, um dos grandes desafios para os provedores é justamente retirar a necessidade de intervenção do usário e oferecer mecanismos que implementem a elasticidade proativa. O que traria um ajuste mais fino na economia de recursos, dentre outros benefícios.
 
 \section{Questão de Pesquisa}
-Um dos grandes pontos a serem discutidos, no que diz respeito à implementação de um tratamento automático para a elasticidade, é a questão da análise do comportamento da aplicação. A qual oferece seus próprios obstáculos a serem transpostos.
-Uma técnica de auto-escalonamento que tenta antecipar os requisitos futuros de uma aplicação, baseado na análise de seu desempenho, é portanto, uma abordagem preditiva. Na literatura, este tema tem sido discutido sob diversos pontos de vista, como nos mostra o trabalho de \cite{Lorido-botr2012}. Algumas das técnicas sugeridas apresentam tanto uma natureza reativa quanto proativa, enquanto outas são excencialmente proativas.
+Um dos grandes pontos a serem discutidos, no que diz respeito à implementação de um tratamento automático para a elasticidade, é a questão da análise do comportamento da aplicação. A qual oferece seus próprios obstáculos a serem transpostos. Uma técnica de auto-escalonamento que tenta antecipar os requisitos futuros de uma aplicação, baseado na análise de seu desempenho, é portanto, uma abordagem preditiva. Na literatura, este tema tem sido discutido sob diversos pontos de vista, como nos mostra o trabalho de \cite{Lorido-botr2012}. Algumas das técnicas sugeridas apresentam tanto uma natureza reativa quanto proativa, enquanto outras são excencialmente proativas. A análise preditiva baseada em séries temporais é identificada por \cite{Lorido-botr2012} como uma destas estratégias que têm uma abordagem puramente proativa. Uma série temporal é uma coleção de observações, as quais podem ser discretizadas ou não, feitas sequencialmente ao longo de um período de tempo. Ou como definido por \cite{shumway2000time}, séries temporais podem ser definidas como uma coleção de variáveis aleatórias indexadas de acordo com a ordem em que elas são obtidas no tempo. 
 
-A análise preditiva baseada em séries temporais é uma destas estratégias que têm uma abordagem puramente proativa. Uma série temporal é uma coleção de observações, as quais podem ser discretizadas ou não, feitas sequencialmente ao longo de um período de tempo. Ou como definido por \cite{shumway2000time}, séries temporais podem ser definidas como uma coleção de variáveis aleatórias indexadas de acordo com a ordem em que elas são obtidas no tempo. 
+Posto isto, nossa questão de pesquisa é: 
 
-A análise de séries temporais pode ser usada para encontrar padrões de repetição na carga de trabalho de uma aplicação, ou para tentar prever valores futuros. 
+A análise de séries temporais pode ser usada para encontrar padrões de repetição na carga de trabalho de uma aplicação, com o intuito de prever valores futuros de forma que ofereça subsídios para a implementação de uma solução de elasticidade proativa?
 
 \section{Objetivos}
 O objetivo deste trabalho é apresentar uma proposta para análise preditiva que possa servir de base na implementação da elasticidade proativa em ambientes de computação em nuvem.
@@ -353,6 +352,7 @@ Uma descrição bastante detalhada destes métodos pode ser encontrada em \cite{
 % TRABALHOS RELACIONADOS
 %=======================================================================
 \chapter{Trabalhos Relacionados}
+
 
 %=======================================================================
 % MODELO PROPOSTO
