@@ -2,7 +2,7 @@ This is BibTeX, Version 0.99c (TeX Live 2009/Debian)
 The top-level auxiliary file: monografia-bender_elasticidade.aux
 The style file: unisinos.bst
 Case mismatch error between cite keys Coutinho and coutinho
----line 22 of file monografia-bender_elasticidade.aux
+---line 23 of file monografia-bender_elasticidade.aux
  : \citation{Coutinho
  :                   }
 I'm skipping whatever remains of this command
