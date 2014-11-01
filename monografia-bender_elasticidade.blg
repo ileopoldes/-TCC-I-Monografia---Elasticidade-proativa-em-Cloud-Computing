@@ -2,12 +2,11 @@ This is BibTeX, Version 0.99c (TeX Live 2009/Debian)
 The top-level auxiliary file: monografia-bender_elasticidade.aux
 The style file: unisinos.bst
 Case mismatch error between cite keys Coutinho and coutinho
----line 23 of file monografia-bender_elasticidade.aux
+---line 20 of file monografia-bender_elasticidade.aux
  : \citation{Coutinho
  :                   }
 I'm skipping whatever remains of this command
 Database file #1: tcc1.bib
-Warning--I didn't find a database entry for "shumway2000time"
 Warning--"{Elasticidade em Computa\c{c}\~{a}o na Nuvem" isn't a brace-balanced string for entry coutinho
 while executing--line 1430 of file unisinos.bst
 Warning--": Uma Abordagem Sistem\'{a}tica}" isn't a brace-balanced string for entry coutinho
@@ -36,7 +35,7 @@ Warning--": PRedictive Elastic ReSource Scaling for cloud systems}" isn't a brac
 while executing--line 1430 of file unisinos.bst
 You've used 9 entries,
             2491 wiz_defined-function locations,
-            640 strings with 5694 characters,
+            639 strings with 5679 characters,
 and the built_in function-call counts, 9064 in all, are:
 = -- 1038
 > -- 65
