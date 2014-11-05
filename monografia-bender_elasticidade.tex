@@ -325,16 +325,18 @@ Quando realizamos observações continuamente no tempo, chamamos de série cont�
 
 Este último objetivo das séries temporais é objeto de estudo deste trabalho.
 
-\subsubsection{Sazonalidade, tendência e variação cíclica}
+\subsubsection{Modelo clássico das séries temporais}
 
-Quando uma série apresenta um comportamento que se repete ao longo do tempo, em intervalos específicos normalmente anuais, dizemos que esta apresenta um comportamento sazonal. Para ilustrar: é natural imaginarmos um aumento no número de vendas de uma determinada loja de brinquedos no período próximo ao natal, ou o aumento de requisições de um determinado site de comércio eletrônico em datas comemorativas. 
+Segundo o modelo clássico de séries temporais, toda a série temporal é composta por quatro padrões:
 
-Outra característica importante pertinente às séries temporais é a tendência. Esta pode ser de crescimento ou decrescimento, e apresenta diversos padrões: linear, exponencial e de amortecimento. No primeiro, observamos um padrão mais ou menos constante, no segundo a alteração dentro de um período de tempo está atrelada a um fator. Por exemplo, aumento de vendas em 1.4 ao ano. E por último, o padrão de amortecimento apresenta uma variação percentual em relação ao aumento do período anterior. Um aumento de 50 \% em vendas em relação ao ano anterior, se no primeiro ano tivermos 1000 vendas esperadas, então no segundo teremos 500 e assim por diante.
-
-%TODO citar variação cíclica
+\begin{itemize}
+	\item Sazonalidade - quando uma série apresenta uma flutuação que se repete ao longo do tempo, em intervalos regulares normalmente inferiores a um ano, dizemos que esta apresenta um comportamento sazonal. Para ilustrar: é natural imaginarmos um aumento no número de vendas de uma determinada loja de brinquedos no período próximo ao natal, ou o aumento de requisições de um determinado site de comércio eletrônico em datas comemorativas. 
+	\item Tendência - outra característica importante pertinente às séries temporais é a tendência. É o comportamento de longo prazo da série. Este pode ser de crescimento ou decrescimento, e apresenta diversos padrões: linear, exponencial e de amortecimento. No primeiro, observamos um padrão mais ou menos constante, no segundo a alteração dentro de um período de tempo está atrelada a um fator. Por exemplo, aumento de vendas em 1.4 ao ano. E por último, o padrão de amortecimento apresenta uma variação percentual em relação ao aumento do período anterior. Um aumento de 50 \% em vendas em relação ao ano anterior, se no primeiro ano tivermos 1000 vendas esperadas, então no segundo teremos 500 e assim por diante.
+	\item Variação cíclica - flutuações nos valores da variável com duração superior a um ano, e que se repetem com certa periodicidade. Normalmente produzem oscilações de subida e de queda nas séries de forma suave e repetitiva.
+	\item Variações irregulares - são as flutuações inexplicáveis, resultado de fatos fortuitos e inesperados como catástrofes naturais. Algumas vezes na literatura, este componente do modelo clássico das séries temporais é chamado de \textit{erro}.
+\end{itemize}
 
 \subsubsection{Correlação}
-
 %TODO explicar este conceito que é o mais importante em séries
 
 
@@ -375,9 +377,15 @@ Uma descrição bastante detalhada destes métodos pode ser encontrada em \cite{
 
 \subsection{Transformada rápida de Fourier (FFT)}
 %TODO incluir descrição
+% http://pt.wikipedia.org/wiki/Transformada_r%C3%A1pida_de_Fourier
 
 \subsection{Cadeia de Markov}
 %TODO incluir descrição
+% http://pt.wikipedia.org/wiki/Cadeias_de_Markov
+
+\subsection{Box–Jenkins}
+%TODO incluir descrição
+% http://en.wikipedia.org/wiki/Box%E2%80%93Jenkins
 
 %=======================================================================
 % TRABALHOS RELACIONADOS
