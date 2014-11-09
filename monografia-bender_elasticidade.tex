@@ -278,7 +278,7 @@ Sem dúvida uma das principais razões para que a computação em nuvem seja uti
 
 Segundo o National Institute of Standards and Technology (NIST) em sua definição de cloud computing \cite{Mell2012}, o conceito de elasticidade é a capacidade de rápido provisionamento e desprovisionamento, com capacidade de recursos virtuais praticamente infinita e quantidade adquirível sem restrição a qualquer momento. \citep{Righi2013} também cita a importância da noção de tempo para o conceito de elasticidade e explica a diferença entre esta e a escalabilidade, conceitos muitas vezes confundidos. A escalabilidade se relaciona à capacidade do sistema ser expandido e este conceito é livre da noção de tempo.
 %TODO - FIX referência a Coutinho não está sendo exibida
-Existem várias definições para elasticidade, e em \cite{Coutinho} encontramos uma análise das diferentes definições, após o que o autor sugere sua própria definição para o conceito: \textit{"Capacidade de adicionar e remover recursos de forma automática de acordo com a carga de trabalho sem interrupções e utilizando os recursos de forma otimizada"}.
+Existem várias definições para elasticidade, e em \cite{coutinho} encontramos uma análise das diferentes definições, após o que o autor sugere sua própria definição para o conceito: \textit{"Capacidade de adicionar e remover recursos de forma automática de acordo com a carga de trabalho sem interrupções e utilizando os recursos de forma otimizada"}.
 
 Nos próximos parágrafos abordaremos algumas características da elasticidade.
 
@@ -373,25 +373,29 @@ Existem muitos processos estocásticos que são utilizados na especificação de
 Uma descrição bastante detalhada destes métodos pode ser encontrada em \cite{Lee2009} e em \cite{Shumway2000}.
 
 \section{Algoritmos e modelos probabilísticos utilizados no processo de predição}
-%TODO incluir introdução
+Nesta seção abordaremos brevemente alguns dos algoritmos e dos processos estocásticos utilizados nos trabalhos relacionados citados na seção 3. Não pretendemos aqui esgotar o assunto, ou mesmo fornecer uma base matemática suficiente para a implementação dos mesmos. O propósito aqui é tão somente auxiliar na compreensão dos propósitos de tais técnicas, e porque são utilizadas nas diferentes soluções de elasticidade proativa sugeridas no próximo capítulo.
 
 \subsection{Transformada rápida de Fourier (FFT)}
-%TODO incluir descrição
-% http://pt.wikipedia.org/wiki/Transformada_r%C3%A1pida_de_Fourier
+A Transformada de Fourier ́e, segundo \cite{Goncalves2004}, uma ferramenta matemática que realiza a transição entre as variáveis tempo e frequência de sinais. Ela é, sem dúvida, uma descoberta muito importante no campo computacional em virtude da grande economia de processamento que proporciona, pois a transformada rápida de fourier diminui o tempo de processamento em aplicações de diferentes naturezas, tais como:  resolução de equações diferenciais, equações integrais, problemas inversos, etc.
+
+%TODO incluir mais alguma informação sobre o uso da FFT no PRESS
 
 \subsection{Cadeia de Markov}
-%TODO incluir descrição
-% http://pt.wikipedia.org/wiki/Cadeias_de_Markov
+Uma Cadeia de Markov ́e um tipo especial de processo estocástico que possui a chamada propriedade markoviana . Um processo estocástico tem a propriedade markoviana se os estados anteriores do processo são irrelevantes para a predição dos próximos estados, desde que o estado atual seja conhecido. 
+\citep{Junior2011} acrescenta que a perda de memória é a base da caracterização das cadeias de Markov e ela estabelece que em um conjunto de estados discretos o futuro só depende do estado presente, ou seja, os estados anteriores são irrelevantes para a predição dos estados seguintes, desde que o estado atual seja conhecido.
 
-\subsection{Box–Jenkins}
-%TODO incluir descrição
-% http://en.wikipedia.org/wiki/Box%E2%80%93Jenkins
+%TODO incluir mais alguma informação sobre o uso da cadeia de markov no PRESS
+
+\subsection{Box & Jenkins (ARIMA)}
+Essa metodologia permite que valores futuros de uma série sejam previstos tomando por base apenas seus valores presentes e passados. Isso é feito através da correlação temporal existente entre os valores existentes. A realização do processo temporal pelo método de Box & Jenkins é representada por um conjunto de processos estocásticos denominados modelos ARIMA (\textit{autoregressive integrated moving average}) onde, em cada instante de tempo t, existe um conjunto de valores que a série pode assumir, aos quais estão associadas possibilidades de ocorrência \citep{Silva2005}. 
+
+%TODO incluir mais alguma informação sobre o uso do ARIMA nos Trab. Rel.
 
 %=======================================================================
 % TRABALHOS RELACIONADOS
 %=======================================================================
 \chapter{Trabalhos Relacionados}
-%TODO incluir introdução
+Este capítulo traz um estudo a respeito de diversos trabalhos, os quais se propõem a desenvolver uma solução para elasticidade proativa a partir de um modelo preditivo. Iniciamos com as particularidades de cada trabalho, e ao término do capítulo relacionaremos as diferentes abordagens em um quadro comparativo.
 
 \section{PRESS: PRedective Elastic ReSource Scaling}
 %TODO descrever trabalho
