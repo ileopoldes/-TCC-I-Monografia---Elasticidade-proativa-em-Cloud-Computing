@@ -1,17 +1,14 @@
 This is BibTeX, Version 0.99c (TeX Live 2009/Debian)
 The top-level auxiliary file: monografia-bender_elasticidade.aux
 The style file: unisinos.bst
-Case mismatch error between cite keys Coutinho and coutinho
----line 20 of file monografia-bender_elasticidade.aux
- : \citation{Coutinho
- :                   }
-I'm skipping whatever remains of this command
 Database file #1: tcc1.bib
 Warning--"{Elasticidade em Computa\c{c}\~{a}o na Nuvem" isn't a brace-balanced string for entry coutinho
 while executing--line 1430 of file unisinos.bst
 Warning--": Uma Abordagem Sistem\'{a}tica}" isn't a brace-balanced string for entry coutinho
 while executing--line 1430 of file unisinos.bst
 `journal' is a missing field, not a string, for entry coutinho
+while executing---line 1430 of file unisinos.bst
+`journal' is a missing field, not a string, for entry Goncalves2004
 while executing---line 1430 of file unisinos.bst
 Warning--"{Time-Series" isn't a brace-balanced string for entry Lee2009
 while executing--line 1430 of file unisinos.bst
@@ -33,45 +30,45 @@ Warning--"{PRESS" isn't a brace-balanced string for entry Wilkes2010
 while executing--line 1430 of file unisinos.bst
 Warning--": PRedictive Elastic ReSource Scaling for cloud systems}" isn't a brace-balanced string for entry Wilkes2010
 while executing--line 1430 of file unisinos.bst
-You've used 9 entries,
+You've used 12 entries,
             2491 wiz_defined-function locations,
-            639 strings with 5679 characters,
-and the built_in function-call counts, 9064 in all, are:
-= -- 1038
-> -- 65
-< -- 123
-+ -- 566
-- -- 42
-* -- 426
-:= -- 751
-add.period$ -- 30
-call.type$ -- 9
-change.case$ -- 88
+            656 strings with 6217 characters,
+and the built_in function-call counts, 13896 in all, are:
+= -- 1699
+> -- 85
+< -- 162
++ -- 912
+- -- 45
+* -- 540
+:= -- 1154
+add.period$ -- 39
+call.type$ -- 12
+change.case$ -- 116
 chr.to.int$ -- 0
-cite$ -- 9
-duplicate$ -- 1177
-empty$ -- 386
-format.name$ -- 91
-if$ -- 1992
+cite$ -- 12
+duplicate$ -- 1900
+empty$ -- 506
+format.name$ -- 119
+if$ -- 3121
 int.to.chr$ -- 0
 int.to.str$ -- 0
 missing$ -- 0
-newline$ -- 21
-num.names$ -- 45
-pop$ -- 193
+newline$ -- 27
+num.names$ -- 60
+pop$ -- 253
 preamble$ -- 1
-purify$ -- 18
+purify$ -- 24
 quote$ -- 0
-skip$ -- 610
+skip$ -- 963
 stack$ -- 0
-substring$ -- 529
-swap$ -- 726
+substring$ -- 853
+swap$ -- 1126
 text.length$ -- 0
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 57
+type$ -- 75
 warning$ -- 0
-while$ -- 60
+while$ -- 78
 width$ -- 0
-write$ -- 11
+write$ -- 14
 (There were 4 error messages)

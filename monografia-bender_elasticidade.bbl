@@ -13,6 +13,15 @@
   International Conference on Utility and Cloud Computing}, [S.l.], n.~1,
   p.~263--270, Nov.~2012.
 
+\bibitem[GON\C{c}ALVES(2004)Gon\c{c}alves]{Goncalves2004} GON\C{c}ALVES, L\@.
+  {Um Estudo sobre a Transformada R\'{a}pida de Fourier e seu uso em
+  Processamento de Imagens}. }, [S.l.], 2004.
+
+\bibitem[J\'{u}NIOR; J\'{u}NIOR(2011)J\'{u}nior e J\'{u}nior]{Junior2011}
+  J\'{u}NIOR, D.; J\'{u}NIOR, V\@. {CONCEITOS E SIMULA\c{C}\~{A}O DE CADEIAS DE
+  MARKOV}. \emph{VIII Congresso de Pesquisa, Ensino e Extens\~{a}o - Conpeex},
+  [S.l.], 2011.
+
 \bibitem[LEE(2009)Lee]{Lee2009} LEE, A.~C\@. {Time-Series: analysis, model, and
   forecasting}. }, [S.l.], p.~961--1020, Jan.~2009.
 
@@ -33,6 +42,11 @@
 \bibitem[SHUMWAY; STOFFER(2000)Shumway e Stoffer]{Shumway2000} SHUMWAY, R.;
   STOFFER, D\@. \emph{{Time series analysis and its applications}}.
   [S.l.:~s.n.], 2000. 591~p.
+
+\bibitem[SILVA(2005)Silva]{Silva2005} SILVA, L\@. {Uma aplica\c{c}\~{a}o de
+  \'{a}rvores de decis\~{a}o, redes neurais e KNN para a identifica\c{c}\~{a}o
+  de modelos ARMA n\~{a}o-sazonais e sazonais}. \emph{Dispon\'{\i}vel on-line
+  em http://www2. dbd. \ldots}, [S.l.], 2005.
 
 \bibitem[WILKES(2010)Wilkes]{Wilkes2010} WILKES, J\@. {PRESS: predictive
   elastic resource scaling for cloud systems}. \emph{2010 International

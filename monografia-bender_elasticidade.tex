@@ -376,7 +376,7 @@ Uma descrição bastante detalhada destes métodos pode ser encontrada em \cite{
 Nesta seção abordaremos brevemente alguns dos algoritmos e dos processos estocásticos utilizados nos trabalhos relacionados citados na seção 3. Não pretendemos aqui esgotar o assunto, ou mesmo fornecer uma base matemática suficiente para a implementação dos mesmos. O propósito aqui é tão somente auxiliar na compreensão dos propósitos de tais técnicas, e porque são utilizadas nas diferentes soluções de elasticidade proativa sugeridas no próximo capítulo.
 
 \subsection{Transformada rápida de Fourier (FFT)}
-A Transformada de Fourier ́e, segundo \cite{Goncalves2004}, uma ferramenta matemática que realiza a transição entre as variáveis tempo e frequência de sinais. Ela é, sem dúvida, uma descoberta muito importante no campo computacional em virtude da grande economia de processamento que proporciona, pois a transformada rápida de fourier diminui o tempo de processamento em aplicações de diferentes naturezas, tais como:  resolução de equações diferenciais, equações integrais, problemas inversos, etc.
+A Transformada de Fourier ́e, segundo \cite{Goncalves2004}, uma ferramenta matemática que realiza a transição entre as variáveis tempo e frequência de sinais. Ela é, sem dúvida, uma descoberta muito importante no campo computacional em virtude da grande economia de processamento que proporciona, pois a transformada rápida de fourier diminui o tempo de processamento em aplicações de diferentes naturezas, tais como:  resolução de equações diferenciais, equações integrais, problemas inversos, processamento de sinal, etc.
 
 %TODO incluir mais alguma informação sobre o uso da FFT no PRESS
 
@@ -397,30 +397,113 @@ Essa metodologia permite que valores futuros de uma série sejam previstos toman
 \chapter{Trabalhos Relacionados}
 Este capítulo traz um estudo a respeito de diversos trabalhos, os quais se propõem a desenvolver uma solução para elasticidade proativa a partir de um modelo preditivo. Iniciamos com as particularidades de cada trabalho, e ao término do capítulo relacionaremos as diferentes abordagens em um quadro comparativo.
 
-\section{PRESS: PRedective Elastic ReSource Scaling}
-%TODO descrever trabalho
+\section{PRESS: PRedictive Elastic ReSource Scaling}
+%Descrição
+Segundo \citep{Wilkes2010}, PRESS se esforça para alocar apenas os recursos suficientes para as aplicações, com o intuito de evitar violações de SLO e minimizar o desperdício de recursos. Ele rastreia continuamente os requisitos de recursos dinâmicos das aplicações de uma forma discreta, e prevê demandas de recursos futuros utilizando duas técnicas complementares. PRESS primeiro emprega técnicas de processamento de sinal (FFT) para identificar padrões de assinatura que são utilizados pelas suas predições. Se nenhuma assinatura é descoberta, PRESS emprega uma abordagem orientada para estatística, para capturar padrões de curto prazo na demanda de recursos, e usa um tempo discreto. Neste ponto, emprega cadeia de Markov para prever a demanda para o futuro próximo. Os modelos de previsão de recursos são repetidamente atualizados quando os padrões de consumo dos recursos mudam. PRESS dá maior prioridade para evitar a subestimação do que para evitar excesso de estimação uma vez que o primeiro é mais susceptível de causar violações de SLO.
+Ele se mostrou um algoritmo muito bom em comparação com outros similares, tendo o menor overhead dentre aqueles analisados no artigo de \cite{Wilkes2010}.
+
+\subsection{Modelo de Serviço de Nuvem ao qual se aplica}
+O PRESS foi desenvolvido para trabalhar no nível de IaaS, mais especificamente para definir alterações de CPU, memória, I/O e rede, ou seja, o tratamento de escalonamento é somente vertical. No trabalho analisado, para fins de simplificação, apenas o aspecto de tratamento de recursos de CPU foi abordado. 
+
+\subsection{Elasticidade}
+PRESS implementa uma solução de elasticidade proativa pura, sem uso de qualquer técnica reativa.
+
+\subsection{Predição}
+O processo de predição do PRESS faz uso de duas estratégias: predição de demanda por recursos dirigida por padrão de assinatura e predição de demanda por recursos dirigida por estado. No primeiro, como já mencionado na introdução desta seção, técnicas de processmaento de sinal são implementadas. O algoritmo consegue tratar, inclusive, situações em que mais de uma frequência se mostra presente. Para estes casos ele irá escolher o padrão de maior duração. Para os casos em que não se encontre padrões repetidos, uma cadeia de Markov com tempo discreto é criada.
+
+\subsection{Algoritmos e modelos probabilísticos utilizados no processo de predição}
+Tal como mencionado acima, PRESS faz uso da transformada rápida de Fourier (FFT) para identificação de padrões de assinatura e de uma cadeia de Markov de tempo discreto para o tratamento da abordagem de estados.
+
 
 \section{Themis: Economy-Based Automatic Resource Scaling}
-%TODO descrever trabalho
+Este trabalho foi publicado na 14ª conferência internacional de computação de alto desempenho e comunicação da IEEE. Tendo em vista um contexto de computação de alto desempenho, onde várias aplicações são executadas concomitantemente e disputam recursos entre si, o objetivo do Themis, segundo \cite{Costache2012}, é o de utilizar um método econômico para alocar automaticamente os recursos para as aplicações que mais necessitam deles. A abordagem na qual ele se baseia é de executar um compartilhamento proporcional de recursos, garantindo diferenciação justa entre as aplicações de acordo com suas respectivas demandas, maximizando a utilização de recursos. Para apoiar o cumprimento do SLO, Themis fornece políticas de escala genéricas baseadas em loops de controle de feedback. Estas políticas se adaptam a demanda de recursos de acordo com as condições de infra-estrutura atual.
+
+\subsection{Modelo de Serviço de Nuvem ao qual se aplica}
+O objetivo do Themis é atender as exigências a nível de infra-estrutura, logo seu campo de atuação é o modelo IaaS. Ele implementa em sua abordagem tanto um escalonamento vertical quanto horizontal. O primeiro para aplicações chamadas rígidas e o segundo para aquelas chamadas elásticas. \citep{Costache2012} utiliza a terminologia rígida para aplicações que possuem um comportamento linear de utilização de recursos, e elásticas para aquelas que possuem uma demanda de recursos dinâmica.
+
+\subsection{Elasticidade}
+O tratamento para elasticidade no Themis se dá de maneira híbrida, pois políticas de marcos são estabelecidas, conforme um padrão reativo e uma técnica simples de proatividade é utilizada. Estas técnicas consistem basicamente em analisar continuamente o desempenho da aplicação e a quantidade de recursos, e conforme um padrão simples de crescimento ou declínio nas necessidades de recursos das aplicações analisadas, alocar ou desalocar recursos para as mesmas.
+
+\subsection{Predição}
+O processo de predição do Themis é bastante rudimentar. Uma vez que o objetivo principal é aproveitar os recursos, não obrigatoriamente de maneira otimizada, mas de forma a privilegiar as aplicações que mais demandam recursos e a manter o SLO, o algortimo se atém apenas a perceber se a demanda por recursos está em uma crescente ou decrescente. 
+
+\subsection{Algoritmos e modelos probabilísticos utilizados no processo de predição}
+Themis não utiliza nenhum modelo probabilístico para executar uma previsão, analisa apenas tendência em um processo estatístico simples.
+
 
 \section{Elastic Resources Framework in IaaS}
 %TODO descrever trabalho
 
+\subsection{Modelo de Serviço de Nuvem ao qual se aplica}
+
+\subsection{Elasticidade}
+
+\subsection{Predição}
+
+\subsection{Algoritmos e modelos probabilísticos utilizados no processo de predição}
+
+
+
 \section{ElaaS: An innovative Elasticity as a Service framework for dynamic management across the cloud stack layers}
 %TODO descrever trabalho
+
+\subsection{Modelo de Serviço de Nuvem ao qual se aplica}
+
+\subsection{Elasticidade}
+
+\subsection{Predição}
+
+\subsection{Algoritmos e modelos probabilísticos utilizados no processo de predição}
+
+
 
 \section{MELA: Monitoring and Analyzing Elasticity of Cloud Services}
 %TODO descrever trabalho
 
+\subsection{Modelo de Serviço de Nuvem ao qual se aplica}
+
+\subsection{Elasticidade}
+
+\subsection{Predição}
+
+\subsection{Algoritmos e modelos probabilísticos utilizados no processo de predição}
+
+
+
+
 \section{Cloud Resource Autoscaling System based on Hidden Markov Model (HMM)}
 %TODO descrever trabalho
+
+\subsection{Modelo de Serviço de Nuvem ao qual se aplica}
+
+\subsection{Elasticidade}
+
+\subsection{Predição}
+
+\subsection{Algoritmos e modelos probabilísticos utilizados no processo de predição}
+
+
+
 
 \section{Vertical scaling for prioritized VMs provisioning}
 %TODO descrever trabalho
 
+
+\subsection{Modelo de Serviço de Nuvem ao qual se aplica}
+
+\subsection{Elasticidade}
+
+\subsection{Predição}
+
+\subsection{Algoritmos e modelos probabilísticos utilizados no processo de predição}
+
+
+
+
 \section{Comparativo dos trabalhos relacionados}
 %TODO um sumário com a tabela comparativa dos artigos citados no capítulo
 % Identificação da lacuna
+
 
 %=======================================================================
 % MODELO PROPOSTO
