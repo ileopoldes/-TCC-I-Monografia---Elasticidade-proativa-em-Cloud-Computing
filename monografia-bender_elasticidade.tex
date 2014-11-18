@@ -388,6 +388,7 @@ Uma Cadeia de Markov ́e um tipo especial de processo estocástico que possui a 
 
 \subsection{Box & Jenkins (ARIMA)}
 Essa metodologia permite que valores futuros de uma série sejam previstos tomando por base apenas seus valores presentes e passados. Isso é feito através da correlação temporal existente entre os valores existentes. A realização do processo temporal pelo método de Box & Jenkins é representada por um conjunto de processos estocásticos denominados modelos ARIMA (\textit{autoregressive integrated moving average}) onde, em cada instante de tempo t, existe um conjunto de valores que a série pode assumir, aos quais estão associadas possibilidades de ocorrência \citep{Silva2005}. 
+Diversas variações deste modelo são encontrados na literatura, como o Sazonal ARIMA que inclui um tratamento especial para sazonalidade ao modelo clássico desta solução, dentre outros.
 
 %TODO incluir mais alguma informação sobre o uso do ARIMA nos Trab. Rel.
 
@@ -433,27 +434,36 @@ Themis não utiliza nenhum modelo probabilístico para executar uma previsão, a
 
 \section{Elastic Resources Framework in IaaS}
 %TODO descrever trabalho
+\cite{Dhingra2013} apresenta em seu artigo, um framework para a camada de nuvem IaaS, que busca atender as necessidades de otimização na utilização de recursos em um ambiente de nuvem. Ele provê um motor de predição de carga de aplicação, o qual prediz em tempo de execução a demanda esperada. Estas informações são a entrada para o gerenciador de recursos para modular a alocação de recursos com base na demanda prevista. Em virtude dos erros de predição, os recursos podem ser superalocados ou subalocados. Superalocação leva a recursos não utilizados e subalocação pode causar perda de desempenho, ou mesmo quebra de SLO. Para encontrar um bom trade-off, é derivado um modelo de custos em excesso, a partir do qual um intervalo de confiança é calculado e aplicado sobre o SLO.
+
 
 \subsection{Modelo de Serviço de Nuvem ao qual se aplica}
+Como o próprio nome sugere, este framework foi desenvolvido para atender a camada de infraestrutura, portantos se aplica a IaaS.
 
 \subsection{Elasticidade}
+A solução implementada por este framework atende as características de elasticidade proativa.
 
 \subsection{Predição}
+O motor de predição do framework captura a variação de requisições de um servidor web na forma de uma série temporal discreta. Estes dados são capturados em janelas de dias e até semanas, divididos apropriadamente para identificação de sazonalidade (esta medida dentro do intervalo de amostra e não de forma clássica). Um modelo probabilístico é rodado para realizar as predições em seguida.
 
 \subsection{Algoritmos e modelos probabilísticos utilizados no processo de predição}
-
+O modelo Sazonal ARIMA (SARIMA) é utilizado para predição e modelagem da série temporal.
 
 
 \section{ElaaS: An innovative Elasticity as a Service framework for dynamic management across the cloud stack layers}
-%TODO descrever trabalho
+A proposta do trabalho de \cite{Kranas2012} é bastante audaciosa, pois busca oferecer gerenciamento de elasticidade como um serviço. Em sua arquitetura ElaaS segue princípios de SOA e disponibiliza web services para que qualquer plataforma possa implementar a solução. O propósito é disponibilizar o gerenciamento dinâmico em todas as camadas da pilha de cloud. É uma solução que busca ser genérica, distribuída e multi-thread. O trabalho descreve a API do framework, além de uma detalhada descrição de sua arquitetura. ElaaS é implementado como uma aplicação que pode ser customizada pelo usuário para que atenda suas necessidades de gerenciamento de elasticidade
 
 \subsection{Modelo de Serviço de Nuvem ao qual se aplica}
+ElaaS pretende atender todas as camadas de serviço de nuvem: IaaS, PaaS e SaaS. Por se tratar de uma solução genérica, para a qual a implementação do motor de decisão fica por conta do usuário, podendo portanto, ser utilizada de diversas formas, de acordo com a necessidade de cada camada.
 
 \subsection{Elasticidade}
+O modelo proposto por \cite{Kranas2012} busca implementar tanto uma solução reativa quanto proativa. Para a primeira, toma ações corretivas de acordo com um mecanismo de regras, e para a proposta de elasticidade proativa, se utiliza de aprendizado de máquina com redes neurais. Ficando a cargo do usuário definir o que irá utilizar em sua solução.
 
 \subsection{Predição}
+O processo de predição faz uso de aprendizado de máquina, implementado através de redes neurais.
 
 \subsection{Algoritmos e modelos probabilísticos utilizados no processo de predição}
+Nenhum modelo probabilístico matemático é implementado neste framework, pois como citado acima, ele faz uso de técnicas de aprendizado de máquina.
 
 
 
