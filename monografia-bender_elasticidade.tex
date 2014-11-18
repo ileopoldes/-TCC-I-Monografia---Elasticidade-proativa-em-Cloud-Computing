@@ -376,20 +376,20 @@ Uma descrição bastante detalhada destes métodos pode ser encontrada em \cite{
 Nesta seção abordaremos brevemente alguns dos algoritmos e dos processos estocásticos utilizados nos trabalhos relacionados citados na seção 3. Não pretendemos aqui esgotar o assunto, ou mesmo fornecer uma base matemática suficiente para a implementação dos mesmos. O propósito aqui é tão somente auxiliar na compreensão dos propósitos de tais técnicas, e porque são utilizadas nas diferentes soluções de elasticidade proativa sugeridas no próximo capítulo.
 
 \subsection{Transformada rápida de Fourier (FFT)}
-A Transformada de Fourier ́e, segundo \cite{Goncalves2004}, uma ferramenta matemática que realiza a transição entre as variáveis tempo e frequência de sinais. Ela é, sem dúvida, uma descoberta muito importante no campo computacional em virtude da grande economia de processamento que proporciona, pois a transformada rápida de fourier diminui o tempo de processamento em aplicações de diferentes naturezas, tais como:  resolução de equações diferenciais, equações integrais, problemas inversos, processamento de sinal, etc.
-
+A Transformada de Fourier - \textit{Fast Fourier Transform} em inglês - ́e, segundo \cite{Goncalves2004}, uma ferramenta matemática que realiza a transição entre as variáveis tempo e frequência de sinais. Ela é, sem dúvida, uma descoberta muito importante no campo computacional em virtude da grande economia de processamento que proporciona, pois a transformada rápida de fourier diminui o tempo de processamento em aplicações de diferentes naturezas, tais como:  resolução de equações diferenciais, equações integrais, problemas inversos, processamento de sinal, etc.
 %TODO incluir mais alguma informação sobre o uso da FFT no PRESS
 
 \subsection{Cadeia de Markov}
 Uma Cadeia de Markov ́e um tipo especial de processo estocástico que possui a chamada propriedade markoviana . Um processo estocástico tem a propriedade markoviana se os estados anteriores do processo são irrelevantes para a predição dos próximos estados, desde que o estado atual seja conhecido. 
 \citep{Junior2011} acrescenta que a perda de memória é a base da caracterização das cadeias de Markov e ela estabelece que em um conjunto de estados discretos o futuro só depende do estado presente, ou seja, os estados anteriores são irrelevantes para a predição dos estados seguintes, desde que o estado atual seja conhecido.
-
 %TODO incluir mais alguma informação sobre o uso da cadeia de markov no PRESS
+
+\subsection{Modelo Oculto de Markov}
+HMM \textit{(Hidden Markov Model)} é um modelo estatístico que difere da cadeia de Markov clássica pelo fato de que seus parâmetros são desconhecidos. Logo, o desafio deste processo estocástico é justamente a determinação dos parâmetros de seus parâmetros ocultos a partir dos seus parâmetros observáveis. E estes últimos por sua vez, retroalimentam o sistema, podendo ser usados para novas análises. É um modelo bastante apropriado para o processo de reconhecimento de padrões.
 
 \subsection{Box & Jenkins (ARIMA)}
 Essa metodologia permite que valores futuros de uma série sejam previstos tomando por base apenas seus valores presentes e passados. Isso é feito através da correlação temporal existente entre os valores existentes. A realização do processo temporal pelo método de Box & Jenkins é representada por um conjunto de processos estocásticos denominados modelos ARIMA (\textit{autoregressive integrated moving average}) onde, em cada instante de tempo t, existe um conjunto de valores que a série pode assumir, aos quais estão associadas possibilidades de ocorrência \citep{Silva2005}. 
 Diversas variações deste modelo são encontrados na literatura, como o Sazonal ARIMA que inclui um tratamento especial para sazonalidade ao modelo clássico desta solução, dentre outros.
-
 %TODO incluir mais alguma informação sobre o uso do ARIMA nos Trab. Rel.
 
 %=======================================================================
@@ -467,31 +467,20 @@ Nenhum modelo probabilístico matemático é implementado neste framework, pois 
 
 
 
-\section{MELA: Monitoring and Analyzing Elasticity of Cloud Services}
-%TODO descrever trabalho
-
-\subsection{Modelo de Serviço de Nuvem ao qual se aplica}
-
-\subsection{Elasticidade}
-
-\subsection{Predição}
-
-\subsection{Algoritmos e modelos probabilísticos utilizados no processo de predição}
-
-
-
-
 \section{Cloud Resource Autoscaling System based on Hidden Markov Model (HMM)}
-%TODO descrever trabalho
+\cite{Nikravesh2014} apresenta uma solução bastante interessante do ponto de vista matemático para a implementação de elasticidade proativa. Esta abordagem foi testada na \textit{Amazon EC2} e obteve um percentual de acerto de 97\% em suas predições. Mas não se trata de uma solução completa com uma aplicação implementando toda a solução. O algoritmo de predição é rodado no software Weka.
 
 \subsection{Modelo de Serviço de Nuvem ao qual se aplica}
+Cloud Resource Autoscaling System based on Hidden Markov Model se trata de uma solução para a camada de infraestrutura, para o modelo IaaS. No artigo, apenas a CPU foi testada.
 
 \subsection{Elasticidade}
+A abordagem é totalmente proativa.
 
 \subsection{Predição}
+O processo de predição se utiliza do software Weka para rodar um algoritmo que implementa o HMM.
 
 \subsection{Algoritmos e modelos probabilísticos utilizados no processo de predição}
-
+O modelo probabilístico implementado é o modelo oculto de Markov. O qual é bastante conhecido por sua aplicação na área de reconhecimento de padrões temporais.
 
 
 
