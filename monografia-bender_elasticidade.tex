@@ -485,17 +485,20 @@ O modelo probabilístico implementado é o modelo oculto de Markov. O qual é ba
 
 
 \section{Vertical scaling for prioritized VMs provisioning}
-%TODO descrever trabalho
-
+Esta solução foi desenvolvida sobre o Xen Hypervisor, que é um software que permite virtualização de sistemas operacionais. A sua maior contribuição é quanto a estratégia de elasticidade que tem uma abordagem prioritariamente vertical, e pelo fato do processo de predição ser leve e não causar um overhead de processamento significativo.
+O trabalho de \cite{Yazdanov2012} traz uma arquitetura interessante. O controlador de escalonamento possui três módulos: escalonamento, predição e correção de erro e todo gerenciamento de máquinas virtuais fica a cargo do Xen.
 
 \subsection{Modelo de Serviço de Nuvem ao qual se aplica}
+Desenvolvido para atender as necessidades de elasticidade do modelo IaaS, provendo elasticidade vertical. No campo da elasticidade horizontal, ele pode incrementar apenas a taxa da CPU.
 
 \subsection{Elasticidade}
+A abordagem de solução para elasticidade é proativa.
 
 \subsection{Predição}
+O processo de predição se utiliza de um modelo linear que trabalha com predições em uma janela de 1 a 30 segundos no futuro.
 
 \subsection{Algoritmos e modelos probabilísticos utilizados no processo de predição}
-
+O modelo utilizado é o AR (autoregressivo), que é um modelo mais simples do que o ARIMA embora da mesma família.
 
 
 

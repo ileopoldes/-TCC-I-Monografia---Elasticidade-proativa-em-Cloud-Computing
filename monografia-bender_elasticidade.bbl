@@ -1,8 +1,19 @@
 \begin{thebibliography}{\hspace{\parindent}}
 
+\bibitem[COSTACHE et~al.(2012)Costache et~al.]{Costache2012} COSTACHE, S.
+  et~al\@. {Themis: economy-based automatic resource scaling for cloud
+  systems}. \emph{2012 IEEE 14th International Conference on High Performance
+  Computing and Communication \& 2012 IEEE 9th International Conference on
+  Embedded Software and Systems}, [S.l.], n.~0332, p.~367--374, June~2012.
+
 \bibitem[COUTINHO; GOMES(2013)Coutinho e Gomes]{coutinho} COUTINHO, E.~F.;
   GOMES, D.~G\@. {Elasticidade em Computa\c{c}\~{a}o na Nuvem: uma abordagem
   sistem\'{a}tica}. }, [S.l.], p.~8, 2013.
+
+\bibitem[DHINGRA et~al.(2013)Dhingra et~al.]{Dhingra2013} DHINGRA, M. et~al\@.
+  {Elastic Resources Framework in IaaS, Preserving Performance SLAs}.
+  \emph{2013 IEEE Sixth International Conference on Cloud Computing}, [S.l.],
+  p.~430--437, June~2013.
 
 \bibitem[EHLERS(2009)Ehlers]{Ehlers2009} EHLERS, R.~S\@. {An\'{a}lise de
   S\'{e}ries Temporais}. \emph{Laborat\'{o}rio de Estat\'{\i}stica e
@@ -22,6 +33,12 @@
   MARKOV}. \emph{VIII Congresso de Pesquisa, Ensino e Extens\~{a}o - Conpeex},
   [S.l.], 2011.
 
+\bibitem[KRANAS et~al.(2012)Kranas et~al.]{Kranas2012} KRANAS, P. et~al\@.
+  {ElaaS: an innovative elasticity as a service framework for dynamic
+  management across the cloud stack layers}. \emph{2012 Sixth International
+  Conference on Complex, Intelligent, and Software Intensive Systems}, [S.l.],
+  p.~1042--1049, July~2012.
+
 \bibitem[LEE(2009)Lee]{Lee2009} LEE, A.~C\@. {Time-Series: analysis, model, and
   forecasting}. }, [S.l.], p.~961--1020, Jan.~2009.
 
@@ -33,6 +50,12 @@
   NIST Definition of Cloud Computing: recommendations of the national institute
   of standards and technology (2011)}. \emph{URL http://csrc. nist.
   gov/publications/nistpubs/800-145/ \ldots}, [S.l.], 2012.
+
+\bibitem[NIKRAVESH; AJILA; LUNG(2014)Nikravesh, Ajila e Lung]{Nikravesh2014}
+  NIKRAVESH, A.~Y.; AJILA, S.~a.; LUNG, C.-H\@. {Cloud Resource Auto-scaling
+  System Based on Hidden Markov Model (HMM)}. \emph{2014 IEEE International
+  Conference on Semantic Computing}, [S.l.], n.~Section III, p.~124--127,
+  June~2014.
 
 \bibitem[RIGHI(2013)Righi]{Righi2013} RIGHI, R. D.~R\@. {Elasticidade em cloud
   computing: conceito, estado da arte e novos desafios}. \emph{Revista
@@ -51,5 +74,10 @@
 \bibitem[WILKES(2010)Wilkes]{Wilkes2010} WILKES, J\@. {PRESS: predictive
   elastic resource scaling for cloud systems}. \emph{2010 International
   Conference on Network and Service Management}, [S.l.], p.~9--16, Oct.~2010.
+
+\bibitem[YAZDANOV; FETZER(2012)Yazdanov e Fetzer]{Yazdanov2012} YAZDANOV, L.;
+  FETZER, C\@. {Vertical Scaling for Prioritized VMs Provisioning}. \emph{2012
+  Second International Conference on Cloud and Green Computing}, [S.l.],
+  p.~118--125, Nov.~2012.
 
 \end{thebibliography}
