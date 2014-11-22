@@ -308,7 +308,6 @@ Os métodos empregados na implementação das soluções de elasticidade encontr
 Para analisar séries temporais, temos dois caminhos que podem ser usados individualmente ou em conjunto. Um é a abordagem do domínio do tempo e a outra a abordagem do domínio de frequência. No domínio do tempo, focamos em analisar a correlação entre pontos adjacentes de uma série com a dependência dos valores atuais com os valores no passado. Já na abordagem de domínio de frequência, nos preocupamos com as características de periodicidade. Na maioria dos casos o resultado obtido da aplicação dessas abordagens é semelhante para séries longas, mas segundo \cite{Shumway2000}, o desempenho para observações curtas é melhor quando realizado no domínio do tempo.
 Vamos primeiramente entender melhor o que são as séries temporais e suas características mais fundamentais antes de nos aprofundarmos na questão da análise propriamente dita.
 
-\section{Séries Temporais}
 De acordo com \cite{Ehlers2009}, uma série temporal é uma coleção de observações feitas sequencialmente ao longo do tempo. Ele aponta como uma das características mais importantes deste tipo de dado o fato de haver dependência entre observações vizinhas. Ou seja, em séries temporais a ordem dos dados tem grande relevância. As séries temporais estão presentes em vários campos do conhecimento tais como: economia, medicina e metereologia. Elas podem ser utilizadas para encontrar padrões em uma carga de trabalho de um servidor, por exemplo. Ou para tentar predizer os valores futuros desta carga. Em ambos os casos a informação necessária para aplicação da técnica é uma lista das \textit{n} últimas observações da série temporal, chamada \textit{janela de entrada}, ou matematicamente conhecido como \textit{espaço de estados}.
 
 \subsection{Conceitos básicos}
@@ -336,7 +335,7 @@ Segundo o modelo clássico de séries temporais, toda a série temporal é compo
 	\item Variações irregulares - são as flutuações inexplicáveis, resultado de fatos fortuitos e inesperados como catástrofes naturais. Algumas vezes na literatura, este componente do modelo clássico das séries temporais é chamado de \textit{erro}.
 \end{itemize}
 
-\subsubsection{Correlação}
+%\subsubsection{Correlação}
 %TODO explicar este conceito que é o mais importante em séries
 
 
@@ -401,105 +400,41 @@ Este capítulo traz um estudo a respeito de diversos trabalhos, os quais se prop
 \section{PRESS: PRedictive Elastic ReSource Scaling}
 %Descrição
 Segundo \citep{Wilkes2010}, PRESS se esforça para alocar apenas os recursos suficientes para as aplicações, com o intuito de evitar violações de SLO e minimizar o desperdício de recursos. Ele rastreia continuamente os requisitos de recursos dinâmicos das aplicações de uma forma discreta, e prevê demandas de recursos futuros utilizando duas técnicas complementares. PRESS primeiro emprega técnicas de processamento de sinal (FFT) para identificar padrões de assinatura que são utilizados pelas suas predições. Se nenhuma assinatura é descoberta, PRESS emprega uma abordagem orientada para estatística, para capturar padrões de curto prazo na demanda de recursos, e usa um tempo discreto. Neste ponto, emprega cadeia de Markov para prever a demanda para o futuro próximo. Os modelos de previsão de recursos são repetidamente atualizados quando os padrões de consumo dos recursos mudam. PRESS dá maior prioridade para evitar a subestimação do que para evitar excesso de estimação uma vez que o primeiro é mais susceptível de causar violações de SLO.
-Ele se mostrou um algoritmo muito bom em comparação com outros similares, tendo o menor overhead dentre aqueles analisados no artigo de \cite{Wilkes2010}.
 
-\subsection{Modelo de Serviço de Nuvem ao qual se aplica}
-O PRESS foi desenvolvido para trabalhar no nível de IaaS, mais especificamente para definir alterações de CPU, memória, I/O e rede, ou seja, o tratamento de escalonamento é somente vertical. No trabalho analisado, para fins de simplificação, apenas o aspecto de tratamento de recursos de CPU foi abordado. 
+Ele se mostrou um algoritmo muito bom em comparação com outros similares, tendo o menor overhead dentre aqueles analisados no artigo de \cite{Wilkes2010}. O PRESS foi desenvolvido para trabalhar no nível de IaaS, mais especificamente para definir alterações de CPU, memória, I/O e rede, ou seja, o tratamento de escalonamento é somente vertical. No trabalho analisado, para fins de simplificação, apenas o aspecto de tratamento de recursos de CPU foi abordado. PRESS implementa uma solução de elasticidade proativa pura, sem uso de qualquer técnica reativa.
 
-\subsection{Elasticidade}
-PRESS implementa uma solução de elasticidade proativa pura, sem uso de qualquer técnica reativa.
-
-\subsection{Predição}
-O processo de predição do PRESS faz uso de duas estratégias: predição de demanda por recursos dirigida por padrão de assinatura e predição de demanda por recursos dirigida por estado. No primeiro, como já mencionado na introdução desta seção, técnicas de processmaento de sinal são implementadas. O algoritmo consegue tratar, inclusive, situações em que mais de uma frequência se mostra presente. Para estes casos ele irá escolher o padrão de maior duração. Para os casos em que não se encontre padrões repetidos, uma cadeia de Markov com tempo discreto é criada.
-
-\subsection{Algoritmos e modelos probabilísticos utilizados no processo de predição}
-Tal como mencionado acima, PRESS faz uso da transformada rápida de Fourier (FFT) para identificação de padrões de assinatura e de uma cadeia de Markov de tempo discreto para o tratamento da abordagem de estados.
+O processo de predição do PRESS faz uso de duas estratégias: predição de demanda por recursos dirigida por padrão de assinatura e predição de demanda por recursos dirigida por estado. No primeiro, como já mencionado acima, técnicas de processamento de sinal são implementadas. O algoritmo consegue tratar, inclusive, situações em que mais de uma frequência se mostra presente. Para estes casos ele irá escolher o padrão de maior duração. Para os casos em que não se encontre padrões repetidos, uma cadeia de Markov com tempo discreto é criada. PRESS faz uso da transformada rápida de Fourier (FFT) para identificação de padrões de assinatura e de uma cadeia de Markov de tempo discreto para o tratamento da abordagem de estados. A predição se repete a cada minuto por padrão e, como tantos outros trabalhos também o fazem, é definida uma janela para coleta dos dados. Esta janela influencia diretamente o desempenho do algoritmo, existindo uma relação diretamente proporcional entre o tamanho dela e o tempo de processamento necessário para a conclusão da predição, influenciando diretamente o overhead do processo preditivo sobre todo o sistema. 
 
 
 \section{Themis: Economy-Based Automatic Resource Scaling}
-Este trabalho foi publicado na 14ª conferência internacional de computação de alto desempenho e comunicação da IEEE. Tendo em vista um contexto de computação de alto desempenho, onde várias aplicações são executadas concomitantemente e disputam recursos entre si, o objetivo do Themis, segundo \cite{Costache2012}, é o de utilizar um método econômico para alocar automaticamente os recursos para as aplicações que mais necessitam deles. A abordagem na qual ele se baseia é de executar um compartilhamento proporcional de recursos, garantindo diferenciação justa entre as aplicações de acordo com suas respectivas demandas, maximizando a utilização de recursos. Para apoiar o cumprimento do SLO, Themis fornece políticas de escala genéricas baseadas em loops de controle de feedback. Estas políticas se adaptam a demanda de recursos de acordo com as condições de infra-estrutura atual.
+\cite{Costache2012} publicou este trabalho na 14ª conferência internacional de computação de alto desempenho e comunicação da IEEE. Tendo em vista um contexto de computação de alto desempenho, onde várias aplicações são executadas concomitantemente e disputam recursos entre si, o objetivo do Themis, segundo o autor, é o de utilizar um método econômico para alocar automaticamente os recursos para as aplicações que mais necessitam deles. A abordagem na qual ele se baseia é de executar um compartilhamento proporcional de recursos, garantindo diferenciação justa entre as aplicações de acordo com suas respectivas demandas, maximizando a utilização de recursos. Para apoiar o cumprimento do SLO, Themis fornece políticas de escala genéricas baseadas em loops de controle de feedback. Estas políticas se adaptam a demanda de recursos de acordo com as condições de infra-estrutura atual. O objetivo do Themis é atender as exigências a nível de infra-estrutura, logo seu campo de atuação é o modelo IaaS. Ele implementa em sua abordagem tanto um escalonamento vertical quanto horizontal. O primeiro para aplicações chamadas rígidas e o segundo para aquelas chamadas elásticas. \citep{Costache2012} utiliza a terminologia rígida para aplicações que possuem um comportamento linear de utilização de recursos, e elásticas para aquelas que possuem uma demanda de recursos dinâmica. O tratamento para elasticidade no Themis se dá de maneira híbrida, pois políticas de marcos são estabelecidas, conforme um padrão reativo e uma técnica simples de proatividade é utilizada concomitantemente. Esta técnica consiste basicamente em analisar continuamente o desempenho da aplicação e a quantidade de recursos, e conforme um padrão simples de crescimento ou declínio nas necessidades de recursos das aplicações analisadas, alocar ou desalocar recursos para as mesmas. 
 
-\subsection{Modelo de Serviço de Nuvem ao qual se aplica}
-O objetivo do Themis é atender as exigências a nível de infra-estrutura, logo seu campo de atuação é o modelo IaaS. Ele implementa em sua abordagem tanto um escalonamento vertical quanto horizontal. O primeiro para aplicações chamadas rígidas e o segundo para aquelas chamadas elásticas. \citep{Costache2012} utiliza a terminologia rígida para aplicações que possuem um comportamento linear de utilização de recursos, e elásticas para aquelas que possuem uma demanda de recursos dinâmica.
-
-\subsection{Elasticidade}
-O tratamento para elasticidade no Themis se dá de maneira híbrida, pois políticas de marcos são estabelecidas, conforme um padrão reativo e uma técnica simples de proatividade é utilizada. Estas técnicas consistem basicamente em analisar continuamente o desempenho da aplicação e a quantidade de recursos, e conforme um padrão simples de crescimento ou declínio nas necessidades de recursos das aplicações analisadas, alocar ou desalocar recursos para as mesmas.
-
-\subsection{Predição}
-O processo de predição do Themis é bastante rudimentar. Uma vez que o objetivo principal é aproveitar os recursos, não obrigatoriamente de maneira otimizada, mas de forma a privilegiar as aplicações que mais demandam recursos e a manter o SLO, o algortimo se atém apenas a perceber se a demanda por recursos está em uma crescente ou decrescente. 
-
-\subsection{Algoritmos e modelos probabilísticos utilizados no processo de predição}
-Themis não utiliza nenhum modelo probabilístico para executar uma previsão, analisa apenas tendência em um processo estatístico simples.
+O processo de predição do Themis é bastante rudimentar. Uma vez que o objetivo principal é aproveitar os recursos, não obrigatoriamente de maneira otimizada, mas de forma a privilegiar as aplicações que mais demandam recursos e a manter o SLO, o algortimo se atém apenas a perceber se a demanda por recursos está em crescimento ou declínio. Themis não utiliza nenhum modelo probabilístico para executar uma previsão, analisa apenas tendência em um processo estatístico simples.
 
 
 \section{Elastic Resources Framework in IaaS}
-%TODO descrever trabalho
-\cite{Dhingra2013} apresenta em seu artigo, um framework para a camada de nuvem IaaS, que busca atender as necessidades de otimização na utilização de recursos em um ambiente de nuvem. Ele provê um motor de predição de carga de aplicação, o qual prediz em tempo de execução a demanda esperada. Estas informações são a entrada para o gerenciador de recursos para modular a alocação de recursos com base na demanda prevista. Em virtude dos erros de predição, os recursos podem ser superalocados ou subalocados. Superalocação leva a recursos não utilizados e subalocação pode causar perda de desempenho, ou mesmo quebra de SLO. Para encontrar um bom trade-off, é derivado um modelo de custos em excesso, a partir do qual um intervalo de confiança é calculado e aplicado sobre o SLO.
+\cite{Dhingra2013} apresenta em seu artigo, um framework para a camada de nuvem IaaS, que busca atender as necessidades de otimização na utilização de recursos em um ambiente de nuvem. Ele provê um motor de predição de carga de aplicação, o qual prediz em tempo de execução a demanda esperada. Estas informações são a entrada para o gerenciador de recursos, o qual deverá modular a alocação de recursos com base na demanda prevista. Em virtude dos erros de predição, os recursos podem ser superalocados ou subalocados. Superalocação leva a existência de recursos não utilizados e subalocação pode causar perda de desempenho, ou mesmo quebra de SLO. Para encontrar um bom trade-off, é derivado um modelo de estimativa de custos, a partir do qual um intervalo de confiança é calculado, com o objetivo de garantir uma melhor utilização dos recursos alocados.
 
+O motor de predição do framework captura a variação de requisições de um servidor web na forma de uma série temporal discreta, a partir do histórico da carga da aplicação. Uma análise sistemática da série temporal, construída a partir destes dados, é executada offline com o objetivo de constuir o modelo de predição. Concomitantemente a este processo, um componente do framework calcula um \textit{intervalo de confiança ótimo}, o qual é baseado na minimificação do total de excesso de custo do sistema. Matematicamente falando, o total de excesso de custo se dá pela soma da superalocação com a variável que define os requisitos de SLA. Este intervalo de confiança é aplicado sobre o modelo a cada interação. É importante salientar que o modelo não é recalculado, mas o intervalo de confiança sim, e reaplicado ao modelo. 
 
-\subsection{Modelo de Serviço de Nuvem ao qual se aplica}
-Como o próprio nome sugere, este framework foi desenvolvido para atender a camada de infraestrutura, portantos se aplica a IaaS.
-
-\subsection{Elasticidade}
-A solução implementada por este framework atende as características de elasticidade proativa.
-
-\subsection{Predição}
-O motor de predição do framework captura a variação de requisições de um servidor web na forma de uma série temporal discreta. Estes dados são capturados em janelas de dias e até semanas, divididos apropriadamente para identificação de sazonalidade (esta medida dentro do intervalo de amostra e não de forma clássica). Um modelo probabilístico é rodado para realizar as predições em seguida.
-
-\subsection{Algoritmos e modelos probabilísticos utilizados no processo de predição}
-O modelo Sazonal ARIMA (SARIMA) é utilizado para predição e modelagem da série temporal.
+Os dados são capturados em janelas de 24 horas durante uma semana, divididos apropriadamente para identificação de sazonalidade (esta medida dentro do intervalo de amostra e não de forma clássica). Um modelo probabilístico é rodado para realizar as predições em seguida. O modelo Sazonal ARIMA (SARIMA) é utilizado para predição e modelagem da série temporal. Os requisitos de recursos especificados pelo processo de predição que será então utilizado pelo framework, é baseado na fronteira superior de predição, altamente influenciada pela variável de intervalo de confiança, descrita anteriormente. Esta abordagem é utilizada para garantir que não haja quebra de SLO.
 
 
 \section{ElaaS: An innovative Elasticity as a Service framework for dynamic management across the cloud stack layers}
-A proposta do trabalho de \cite{Kranas2012} é bastante audaciosa, pois busca oferecer gerenciamento de elasticidade como um serviço. Em sua arquitetura ElaaS segue princípios de SOA e disponibiliza web services para que qualquer plataforma possa implementar a solução. O propósito é disponibilizar o gerenciamento dinâmico em todas as camadas da pilha de cloud. É uma solução que busca ser genérica, distribuída e multi-thread. O trabalho descreve a API do framework, além de uma detalhada descrição de sua arquitetura. ElaaS é implementado como uma aplicação que pode ser customizada pelo usuário para que atenda suas necessidades de gerenciamento de elasticidade
+A proposta do trabalho de \cite{Kranas2012} é bastante audaciosa, pois busca oferecer gerenciamento de elasticidade como um serviço. Em sua arquitetura ElaaS segue princípios de SOA e disponibiliza web services para que qualquer plataforma possa implementar a solução. O propósito é disponibilizar o gerenciamento dinâmico em todas as camadas da pilha de cloud. É uma solução que busca ser genérica, distribuída e multi-thread. O trabalho descreve a API do framework, além de uma detalhada descrição de sua arquitetura. ElaaS é implementado como uma aplicação que pode ser customizada pelo usuário para que atenda suas necessidades de gerenciamento de elasticidade. ElaaS pretende atender todas as camadas de serviço de nuvem: IaaS, PaaS e SaaS. Por se tratar de uma solução genérica, para a qual a implementação do motor de decisão fica por conta do usuário, podendo portanto, ser utilizada de diversas formas, de acordo com a necessidade de cada camada.
 
-\subsection{Modelo de Serviço de Nuvem ao qual se aplica}
-ElaaS pretende atender todas as camadas de serviço de nuvem: IaaS, PaaS e SaaS. Por se tratar de uma solução genérica, para a qual a implementação do motor de decisão fica por conta do usuário, podendo portanto, ser utilizada de diversas formas, de acordo com a necessidade de cada camada.
-
-\subsection{Elasticidade}
-O modelo proposto por \cite{Kranas2012} busca implementar tanto uma solução reativa quanto proativa. Para a primeira, toma ações corretivas de acordo com um mecanismo de regras, e para a proposta de elasticidade proativa, se utiliza de aprendizado de máquina com redes neurais. Ficando a cargo do usuário definir o que irá utilizar em sua solução.
-
-\subsection{Predição}
-O processo de predição faz uso de aprendizado de máquina, implementado através de redes neurais.
-
-\subsection{Algoritmos e modelos probabilísticos utilizados no processo de predição}
-Nenhum modelo probabilístico matemático é implementado neste framework, pois como citado acima, ele faz uso de técnicas de aprendizado de máquina.
-
+O modelo proposto por \cite{Kranas2012} busca implementar tanto uma solução reativa quanto proativa. Para a primeira, toma ações corretivas de acordo com um mecanismo de regras, e para a proposta de elasticidade proativa, se utiliza de aprendizado de máquina com redes neurais. Ficando a cargo do usuário definir o que irá utilizar em sua solução. O processo de predição faz uso de aprendizado de máquina, implementado através de redes neurais. Nenhum modelo probabilístico matemático é implementado neste framework, pois como citado acima, ele faz uso de técnicas de aprendizado de máquina.
 
 
 \section{Cloud Resource Autoscaling System based on Hidden Markov Model (HMM)}
-\cite{Nikravesh2014} apresenta uma solução bastante interessante do ponto de vista matemático para a implementação de elasticidade proativa. Esta abordagem foi testada na \textit{Amazon EC2} e obteve um percentual de acerto de 97\% em suas predições. Mas não se trata de uma solução completa com uma aplicação implementando toda a solução. O algoritmo de predição é rodado no software Weka.
-
-\subsection{Modelo de Serviço de Nuvem ao qual se aplica}
-Cloud Resource Autoscaling System based on Hidden Markov Model se trata de uma solução para a camada de infraestrutura, para o modelo IaaS. No artigo, apenas a CPU foi testada.
-
-\subsection{Elasticidade}
-A abordagem é totalmente proativa.
-
-\subsection{Predição}
-O processo de predição se utiliza do software Weka para rodar um algoritmo que implementa o HMM.
-
-\subsection{Algoritmos e modelos probabilísticos utilizados no processo de predição}
-O modelo probabilístico implementado é o modelo oculto de Markov. O qual é bastante conhecido por sua aplicação na área de reconhecimento de padrões temporais.
-
+\cite{Nikravesh2014} apresenta uma solução bastante interessante do ponto de vista matemático para a implementação de elasticidade proativa. Esta abordagem foi testada na \textit{Amazon EC2} e obteve um percentual de acerto de 97\% em suas predições. Mas não se trata de uma solução completa com uma aplicação implementando toda a solução. O algoritmo de predição é rodado no software Weka. Cloud Resource Autoscaling System based on Hidden Markov Model se trata de uma solução para a camada de infraestrutura, para o modelo IaaS. No artigo, apenas a CPU foi testada. A abordagem é totalmente proativa. O processo de predição se utiliza do software Weka para rodar um algoritmo que implementa o HMM. O modelo probabilístico implementado é o modelo oculto de Markov. O qual é bastante conhecido por sua aplicação na área de reconhecimento de padrões temporais.
 
 
 \section{Vertical scaling for prioritized VMs provisioning}
 Esta solução foi desenvolvida sobre o Xen Hypervisor, que é um software que permite virtualização de sistemas operacionais. A sua maior contribuição é quanto a estratégia de elasticidade que tem uma abordagem prioritariamente vertical, e pelo fato do processo de predição ser leve e não causar um overhead de processamento significativo.
-O trabalho de \cite{Yazdanov2012} traz uma arquitetura interessante. O controlador de escalonamento possui três módulos: escalonamento, predição e correção de erro e todo gerenciamento de máquinas virtuais fica a cargo do Xen.
+O trabalho de \cite{Yazdanov2012} traz uma arquitetura interessante. O controlador de escalonamento possui três módulos: escalonamento, predição e correção de erro e todo gerenciamento de máquinas virtuais fica a cargo do Xen. Desenvolvido para atender as necessidades de elasticidade do modelo IaaS, provendo elasticidade vertical. No campo da elasticidade horizontal, ele pode incrementar apenas a taxa da CPU. A abordagem de solução para elasticidade é proativa.
 
-\subsection{Modelo de Serviço de Nuvem ao qual se aplica}
-Desenvolvido para atender as necessidades de elasticidade do modelo IaaS, provendo elasticidade vertical. No campo da elasticidade horizontal, ele pode incrementar apenas a taxa da CPU.
-
-\subsection{Elasticidade}
-A abordagem de solução para elasticidade é proativa.
-
-\subsection{Predição}
-O processo de predição se utiliza de um modelo linear que trabalha com predições em uma janela de 1 a 30 segundos no futuro.
-
-\subsection{Algoritmos e modelos probabilísticos utilizados no processo de predição}
-O modelo utilizado é o AR (autoregressivo), que é um modelo mais simples do que o ARIMA embora da mesma família.
-
+O processo de predição se utiliza de um modelo linear que trabalha com predições em uma janela de 1 a 30 segundos no futuro. O modelo utilizado é o AR (autoregressivo), que é um modelo mais simples do que o ARIMA embora da mesma família.
 
 
 \section{Comparativo dos trabalhos relacionados}
