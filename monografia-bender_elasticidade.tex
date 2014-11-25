@@ -398,10 +398,10 @@ Diversas variações deste modelo são encontrados na literatura, como o Sazonal
 Este capítulo traz um estudo a respeito de diversos trabalhos, os quais se propõem a desenvolver uma solução para elasticidade proativa a partir de um modelo preditivo. Iniciamos com as particularidades de cada trabalho, e ao término do capítulo relacionaremos as diferentes abordagens em um quadro comparativo.
 
 \section{PRESS: PRedictive Elastic ReSource Scaling}
-%Descrição
+
 Segundo \citep{Wilkes2010}, PRESS se esforça para alocar apenas os recursos suficientes para as aplicações, com o intuito de evitar violações de SLO e minimizar o desperdício de recursos. Ele rastreia continuamente os requisitos de recursos dinâmicos das aplicações de uma forma discreta, e prevê demandas de recursos futuros utilizando duas técnicas complementares. PRESS primeiro emprega técnicas de processamento de sinal (FFT) para identificar padrões de assinatura que são utilizados pelas suas predições. Se nenhuma assinatura é descoberta, PRESS emprega uma abordagem orientada para estatística, para capturar padrões de curto prazo na demanda de recursos, e usa um tempo discreto. Neste ponto, emprega cadeia de Markov para prever a demanda para o futuro próximo. Os modelos de previsão de recursos são repetidamente atualizados quando os padrões de consumo dos recursos mudam. PRESS dá maior prioridade para evitar a subestimação do que para evitar excesso de estimação uma vez que o primeiro é mais susceptível de causar violações de SLO.
 
-Ele se mostrou um algoritmo muito bom em comparação com outros similares, tendo o menor overhead dentre aqueles analisados no artigo de \cite{Wilkes2010}. O PRESS foi desenvolvido para trabalhar no nível de IaaS, mais especificamente para definir alterações de CPU, memória, I/O e rede, ou seja, o tratamento de escalonamento é somente vertical. No trabalho analisado, para fins de simplificação, apenas o aspecto de tratamento de recursos de CPU foi abordado. PRESS implementa uma solução de elasticidade proativa pura, sem uso de qualquer técnica reativa.
+Ele se mostrou um algoritmo muito bom em comparação com outros similares, tendo o menor overhead dentre aqueles analisados no artigo de \cite{Wilkes2010}. O PRESS foi desenvolvido para trabalhar no nível de IaaS, mais especificamente para definir alterações de CPU, memória, I/O e rede, ou seja, o tratamento de escalonamento é somente vertical. No trabalho analisado, para fins de simplificação, apenas o aspecto de tratamento de recursos de CPU foi abordado. PRESS implementa uma solução de elasticidade proativa, sem uso de qualquer técnica reativa.
 
 O processo de predição do PRESS faz uso de duas estratégias: predição de demanda por recursos dirigida por padrão de assinatura e predição de demanda por recursos dirigida por estado. No primeiro, como já mencionado acima, técnicas de processamento de sinal são implementadas. O algoritmo consegue tratar, inclusive, situações em que mais de uma frequência se mostra presente. Para estes casos ele irá escolher o padrão de maior duração. Para os casos em que não se encontre padrões repetidos, uma cadeia de Markov com tempo discreto é criada. PRESS faz uso da transformada rápida de Fourier (FFT) para identificação de padrões de assinatura e de uma cadeia de Markov de tempo discreto para o tratamento da abordagem de estados. A predição se repete a cada minuto por padrão e, como tantos outros trabalhos também o fazem, é definida uma janela para coleta dos dados. Esta janela influencia diretamente o desempenho do algoritmo, existindo uma relação diretamente proporcional entre o tamanho dela e o tempo de processamento necessário para a conclusão da predição, influenciando diretamente o overhead do processo preditivo sobre todo o sistema. 
 
@@ -441,10 +441,45 @@ O \textit{Xentop} é utilizado para obter as estatísticas de CPU e os ajustes s
 
 
 \section{Comparativo dos trabalhos relacionados}
-%TODO um sumário com a tabela comparativa dos artigos citados no capítulo
-% Identificação da lacuna
+Nesta seção traçaremos um paralelo entre as principais características dos trabalhos relacionados nesta pesquisa. E ao final será apresentada uma avaliação, ressaltando os aspectos que ainda precisam ser desenvolvidos pelos trabalhos da área, o que nos propomos a fazer no presente trabalho e está detalhado no próximo capítulo que trata do modelo proposto.
 
 
+\begin{table}[!htpd]
+\tiny
+	\caption{Tabela de comparação dos trabalhos relacionados}
+	\begin{center}
+		\begin{tabular}{llllll}
+				
+\hline
+\textbf{Trabalho}		&\textbf{Escopo}&\textbf{Política}		&\textbf{Escalonamento}	&\textbf{Técnica}		&\textbf{Propósito}\\
+
+\hline			
+PRESS					&IaaS			&proativa				&V						&FFT e Markov				&Desempenho\\
+
+\hline							
+Themis					&IaaS			&reativa e proativa		&H e V					&Thresholds e AR			&Compartilhamento proporcional de recursos\\
+
+\hline
+Elastic R.F. in IaaS 	&IaaS			&proativa				&V						&SARIMA						&Otimização do uso de recursos e desempenho\\
+
+\hline
+ElaaS					&IaaS,PaaS,SaaS	&reativa e proativa		&H e V					&Thresholds, aprendizado de máquina e redes neurais				&Elasticidade como serviço\\
+
+\hline
+Cloud R.A.S. HMM		&IaaS			&proativa				&V						&HMM						&Desempenho	e eficiência de predições\\
+
+\hline
+Vertical scaling		&IaaS			&reativa e proativa		&H e V					&Thresholds e AR			&Desempenho\\
+\hline
+
+
+		\end{tabular}
+	\end{center}
+\end{table}
+
+Embora com propósitos diversos e estratégias diferentes, em sua maioria os trabalhos estudados apontam para horizontes semelhantes. Todos eles atendem a camada de infraestrutura da nuvem, com uma menção especial para o trabalho de \cite{Kranas2012}, o ElaaS. Este tem uma abordagem que visa fornecer elasticidade como serviço, e portanto, é possível adaptá-lo para uso nas demais camadas. Na questão de escalonamento temos o redimensionamento, principalmente de poder de processamento, como abordagem mais comum. Alguns trabalhos ainda sugerem uma abordagem através da qual é possível implementar tanto o escalonamento vertical quanto o horizontal. Neste ponto, é interessante ressaltar o trabalho de \cite{Yazdanov2012}, que propõe uma solução para o problema do conflito de recursos, utilizando-se preferencialmente de escalonamento vertical para máquinas priorizadas que rodam aplicações com requisitos críticos de tempo, enquanto faz uso do escalonamento horizontal para as demais máquinas. No campo das técnicas de predição temos uma predominância dos modelos autoregressivos, com o uso de processos para criação de modelos sendo pré-computados e a predição a partir destes modelos sendo utilizada em tempo de execução. Aqui podemos perceber o difícil equilíbrio entre um modelo probabilístico eficiente e o tempo necessário para a construção de um modelo preditivo adequado a realidade das aplicações. Alguns autores, como \cite{Yazdanov2012} e \cite{Costache2012} preferiram uma estratégia linear mais simples, que lhes garantiu desempenho na execução do algoritmo à custa da eficiência das predições. Neste ponto, o trabalho de \citep{Wilkes2010}, com o PRESS, e de \cite{Nikravesh2014} com o uso do modelo oculto de Markov como técnica do motor de predição, se destacam. PRESS, com uma abordagem faseada para a construção da predição, busca encontrar padrões com FFT e com cadeia de Markov, e obteve um bom desempenho em tempo de execução, mesmo com janelas pequenas de captura de dados para retroalimentação do modelo. Mas como optou por sempre escolher o maior valor da predição para garantir que não haja quebra de SLO, seus resultados mostram que na questão otimização ele não obteve os melhores resultados. \cite{Nikravesh2014} ao usar HMM mostrou a maior eficiência dentre os algoritmos testados, atingindo uma margem de 97\% de acertos na fase de teste do seu modelo e um ótimo desempenho em tempo de execução, após ter o modelo criado, é claro.
+
+Concluímos que o equilíbrio entre um bom desempenho em tempo de execução e um algoritmo apropriado, com uma elevada taxa de acertos que resulte no uso otimizado dos recursos, seja o objetivo de um bom motor de predição. Portanto, os trabalhos analisados deixaram uma lacuna em relação a esta questão por não apresentarem um algoritmo que seja eficiente e ao mesmo tempo um processo de predição rápido. Nos trabalhos onde um destes itens foi contemplado, o outro necessariamente não esteve presente.
 %=======================================================================
 % MODELO PROPOSTO
 %=======================================================================
