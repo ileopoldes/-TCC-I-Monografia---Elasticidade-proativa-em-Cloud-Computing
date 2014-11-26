@@ -484,6 +484,32 @@ Concluímos que o equilíbrio entre um bom desempenho em tempo de execução e u
 % MODELO PROPOSTO
 %=======================================================================
 \chapter{Modelo}
+A partir da revisão teórica que abordamos no capítulo 2, nos foi possível estabelecer as bases necessárias para que possamos compreender os desafios inerentes a uma implementação de elasticidade proativa. E à luz destas informações, estudamos os trabalhos apresentados no capítulo 3, os quais se propõem de diversas formas a apresentar uma proposta de implementação de elasticidade automática preditiva. Conseguimos traçar um paralelo entre estes dois capítulos, o que nos capacitou a realizarmos uma avaliação destes trabalhos, e nos trouxe a percepção da lacuna existente nos artigos examinados no que se refere a necessidade de uma implementação que tenha um bom desempenho em tempo de execução e ao mesmo tempo utilize um algoritmo eficiente, atingindo de fato o propósito de otimização de recursos através do provisionamento inteligente. Neste capítulo apresentaremos nosso modelo e debateremos em termos gerais as questões de projeto, sua arquitetura e como pretendemos avaliar o desempenho da nossa proposta.
+
+\section{Questões de projeto}
+O objetivo deste trabalho é propor um método de análise preditiva a partir dos dados de carga de uma aplicação, com o intuito de fornecer subsídios para a implementação de uma abordagem proativa para a questão da elasticidade. Que deverá apresentar um processo de predição com um bom desempenho, e resultados que comprovem um alto grau de eficiência na questão da otimização dos recursos. Portanto, o modelo aqui proposto tem como escopo somente um módulo de predição.
+
+% pesquisa
+Posto isto, nossa questão de pesquisa é:
+
+A análise de séries temporais pode ser usada para encontrar padrões na carga de trabalho de uma aplicação, com o intuito de prever valores futuros, de forma que ofereça subsídios para a implementação de uma solução de elasticidade proativa?
+
+% objetivo principal
+O objetivo deste trabalho é:
+Apresentar uma proposta para análise preditiva que possa servir de base na implementação da elasticidade proativa em ambientes de computação em nuvem.
+
+% objetivos secundários
+Para atingir o objetivo acima citado, temos os seguintes objetivos secundários:
+Desenvolver uma estratégia para coleta de dados;
+Criar uma estrutura para analisar os dados e aplicar modelos matemáticos condizentes com os padrões encontrados;
+Disponibilizar como resposta uma sugestão de alteração da configuração vigente, em virtude da demandada prevista de acordo com a análise realizada. 
+
+
+% Questões de Projeto 
+% Arquitetura 
+% Metodologia de Avaliação 
+%	THEIL's U
+%	(best practice de indicador de aderência de previsão)
 
 %=======================================================================
 % CONCLUSÃO
