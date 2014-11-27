@@ -491,8 +491,12 @@ O objetivo deste trabalho é propor um método de análise preditiva a partir do
 
 No início deste trabalho propusemos a seguinte questão de pesquisa: a análise de séries temporais pode ser usada para encontrar padrões na carga de trabalho de uma aplicação, com o intuito de prever valores futuros, de forma que ofereça subsídios para a implementação de uma solução de elasticidade proativa? Neste ponto de nossos estudos, podemos afirmar com certeza que sim. Mas descobrimos que a pergunta pode e deve ser ampliada, para sabermos se é possível o uso de análise de séries temporais, utilizando-se de um modelo probabilístico que apresentem alto grau de exatidão em suas predições e que tenham um bom desempenho, o qual nos permita utilizá-lo em tempo de execução sem um aumento acentuado de overhead.
 
-% Arquitetura 
-% Metodologia de Avaliação 
+Para que se possa manter o foco no real propósito deste trabalho, iremos abstrair as questões que permeiam a proposta e não são inerentemente fundamentais para a construção do módulo de predição. Sendo assim, como resultado deste modelo não teremos uma implementação genérica ou adaptável, ou ao menos esta não será uma preocupação de projeto, visto que os objetivos principais são o tempo de processamento e exatidão dos resultados. O escalonamento empregado será vertical e a única dimensão analisada o processamento, pois estes itens são suficientes para que cumpramos os objetivos a que nos propusemos no início deste trabalho. 
+
+\section{Arquitetura}
+
+
+\section{Metodologia de Avaliação}
 %	THEIL's U
 %	(best practice de indicador de aderência de previsão)
 
