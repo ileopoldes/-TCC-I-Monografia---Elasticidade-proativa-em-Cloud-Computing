@@ -489,21 +489,41 @@ A partir da revisão teórica que abordamos no capítulo 2, nos foi possível es
 \section{Questões de projeto}
 O objetivo deste trabalho é propor um método de análise preditiva a partir dos dados de carga de uma aplicação, com o intuito de fornecer subsídios para a implementação de uma abordagem proativa para a questão da elasticidade. Que deverá apresentar um processo de predição com um bom desempenho, e resultados que comprovem um alto grau de eficiência na questão da otimização dos recursos. Portanto, o modelo aqui proposto tem como escopo somente o módulo de predição.
 
-No início deste trabalho propusemos a seguinte questão de pesquisa: a análise de séries temporais pode ser usada para encontrar padrões na carga de trabalho de uma aplicação, com o intuito de prever valores futuros, de forma que ofereça subsídios para a implementação de uma solução de elasticidade proativa? Neste ponto de nossos estudos, podemos afirmar com certeza que sim. Mas descobrimos que a pergunta pode e deve ser ampliada, para sabermos se é possível o uso de análise de séries temporais, utilizando-se de um modelo probabilístico que apresentem alto grau de exatidão em suas predições e que tenham um bom desempenho, o qual nos permita utilizá-lo em tempo de execução sem um aumento acentuado de overhead.
+No início deste trabalho propusemos a seguinte questão de pesquisa: a análise de séries temporais pode ser usada para encontrar padrões na carga de trabalho de uma aplicação, com o intuito de prever valores futuros, de forma que ofereça subsídios para a implementação de uma solução de elasticidade proativa? Neste ponto de nossos estudos, podemos afirmar com certeza que sim. Mas descobrimos que a pergunta pode e deve ser ampliada, para sabermos se é possível o uso de análise de séries temporais, utilizando-se de um modelo probabilístico que apresente alto grau de exatidão em suas predições e que tenha um bom desempenho, o qual nos permita utilizá-lo em tempo de execução sem um aumento acentuado de overhead.
 
-Para que se possa manter o foco no real propósito deste trabalho, iremos abstrair as questões que permeiam a proposta e não são inerentemente fundamentais para a construção do módulo de predição. Sendo assim, como resultado deste modelo não teremos uma implementação genérica ou adaptável, ou ao menos esta não será uma preocupação de projeto, visto que os objetivos principais são o tempo de processamento e exatidão dos resultados. O escalonamento empregado será vertical e a única dimensão analisada o processamento, pois estes itens são suficientes para que cumpramos os objetivos a que nos propusemos no início deste trabalho. 
+Para que se possa manter o foco no real propósito deste trabalho, iremos abstrair as questões que permeiam a proposta e não são inerentemente fundamentais para a construção do módulo de predição. Sendo assim, como resultado deste modelo não teremos uma implementação genérica ou adaptável, ou ao menos esta não será uma preocupação de projeto, visto que os objetivos principais são o tempo de processamento e exatidão dos resultados. O escalonamento empregado será vertical e a única dimensão analisada o poder de processamento, pois estes itens são suficientes para que cumpramos os objetivos a que nos propusemos no início deste trabalho. 
+
+Não será criada uma API detalhada neste momento. E até mesmo os resultados da predição não receberão um tratamento para serem consumidos por uma ou outra plataforma específica. Pois entendemos que estas são questões secundárias, e não influenciam no propósito principal do trabalho. Optando assim por manter baixa a complexidade do projeto. E de igual forma, usaremos uma plataforma de cloud arbitrária que julgarmos mais apropriada para a coleta dos dados, sem preocupação com compatibilidade com outras pelos mesmos motivos já descritos nesta seção.
 
 \section{Arquitetura}
 
+Tal como mencionado na seção anterior, não nos preocuparemos com as questões periféricas que não têm uma influência direta sobre o propósito do trabalho. Sendo assim, não definiremos neste momento o formato da saída do nosso projeto. Assim como a escolha da plataforma de virtualização não será feita neste momento, pois se faz necessário alguns testes para avaliação. Basta, entretanto afirmar que o projeto será executado com o auxílio de uma plataforma de nuvem que forneça uma API para coleta dos dados de utilização das VMs, mais especificamente os dados de processamento. E priorizaremos na escolha a API com um bom desempenho neste processo.
+
+Em termos gerais a arquitetura do projeto contará com cinco módulos:
+
+\begin{itemize}
+	\item Módulo de captura, responsável pela comunicação com a ferramenta que fornecerá os dados de utilização da VM. Trata-se de um módulo relativamente simples, o qual tem como objetivo somente a comunicação com o sistema terceiro e a formatação dos dados para que sejam utilizados pelo sistema de predição.
+	\item Módulo de tratamento dos dados que se destina a preparar as informações coletadas, para que sejam submetidas aos algoritmos de predição que serão testados. Dentre os procedimentos que serão desenvolvidos por este módulo estarão testes de validação, para garantir que a série seja adequada para os algoritmos aos quais será submetida. Também um tratamento para outliers será utilizado, com o intuito de evitar discrepâncias nas predições em decorrência da existência de valores atípicos na série examinada.
+	\item Módulo de modelos probabilísticos, o qual provê a implementação de alguns dos algoritmos que iremos examinar. Este módulo recebe como entrada a série tratada e a submete aos modelos disponíveis, tendo como saída o resultado de suas previsões. A quantidade de modelos implementados irá depender de nossos testes de exatidão.
+	\item Módulo de avaliação de precisão que objetiva analisar as previsões a partir de um indicador de aderência de previsão. E então escolher aquele que melhor modela o comportamento da aplicação submetida à análise.
+	\item Módulo de exportação o qual é a última camada da aplicação, destinado a preparar os dados para a saída. É um módulo simples, com o intuito de definir um formato de apresentação para os dados da série de previsão.
+\end{itemize}
 
 \section{Metodologia de Avaliação}
-%	THEIL's U
-%	(best practice de indicador de aderência de previsão)
+O processo de avaliação se dará em dois momentos: a avaliação dos resultados de previsão por indicadores e a avaliação da aplicação frente aos objetivos a que o projeto se propôs. Teremos uma avaliação em tempo de execução através do \textit{módulo de avaliação de precisão}, descrito na seção anterior. Neste ponto nos utilizaremos de um indicador de aderência de previsão. O indicador escolhido será o \textit{Theil's U}, que é uma medida relativa a precisão que compara os resultados previstos com os dados históricos mínimos, analisando a aderência dos valores da previsão aos da tendência da série. Este índice também auxilia na eliminação de métodos que apresentem grandes erros \cite{Shumway2000}. Ele funcionará como um indicador constante de qualidade, avaliando em tempo real a exatidão das previsões, e portanto, podendo adaptá-las no caso de haver necessidade de fazê-lo. Além desta avaliação também utilizaremos a média de erro absoluto percentual (\textit{MAPE}), que também é conhecido como média de desvio percentual absoluto. É uma medida da precisão de um método para o cálculo dos valores de séries temporais, também relacionado à análise de tendência, e é geralmente expresso como uma percentagem de precisão.
+
+O segundo momento de avaliação se refere a avaliação do modelo frente aos objetivos do projeto. Tendo em vista que buscamos um alto grau de exatidão das previsões, juntamente com um tempo de execução que não acrescente overhead significativo, a avaliação da aderência do modelo à sua proposta se utilizará dos indicadores descritos no parágrafo anterior, e dos tempos de processamento de diferentes amostras de carga (\textit{workload}) de dados da VM. Em termos gerais, o tempo de processamento e resposta do módulo de previsão não pode ser superior a janela de tempo necessária para implementar as mudanças sugeridas por ele. A resposta deve ser fornecida antes do período em que as mudanças devem ser aplicadas.
+
 
 %=======================================================================
 % CONCLUSÃO
 %=======================================================================
 \chapter{Conclusão}
+
+
+%5.1- Contribuições Esperadas 
+%5.2- Trab. Relacionados 
+%5.3- Cronograma 
 
 % objetivos secundários
 %Para atingir o objetivo acima citado, temos os seguintes objetivos secundários:
