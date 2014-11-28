@@ -479,12 +479,14 @@ Vertical scaling		&IaaS			&reativa e proativa		&H e V					&Thresholds e AR			&De
 
 Embora com propósitos diversos e estratégias diferentes, em sua maioria os trabalhos estudados apontam para horizontes semelhantes. Todos eles atendem a camada de infraestrutura da nuvem, com uma menção especial para o trabalho de \cite{Kranas2012}, o ElaaS. Este tem uma abordagem que visa fornecer elasticidade como serviço, e portanto, é possível adaptá-lo para uso nas demais camadas. Na questão de escalonamento temos o redimensionamento, principalmente de poder de processamento, como abordagem mais comum. Alguns trabalhos ainda sugerem uma abordagem através da qual é possível implementar tanto o escalonamento vertical quanto o horizontal. Neste ponto, é interessante ressaltar o trabalho de \cite{Yazdanov2012}, que propõe uma solução para o problema do conflito de recursos, utilizando-se preferencialmente de escalonamento vertical para máquinas priorizadas que rodam aplicações com requisitos críticos de tempo, enquanto faz uso do escalonamento horizontal para as demais máquinas. No campo das técnicas de predição temos uma predominância dos modelos autoregressivos, com o uso de processos para criação de modelos sendo pré-computados e a predição a partir destes modelos sendo utilizada em tempo de execução. Aqui podemos perceber o difícil equilíbrio entre um modelo probabilístico eficiente e o tempo necessário para a construção de um modelo preditivo adequado a realidade das aplicações. Alguns autores, como \cite{Yazdanov2012} e \cite{Costache2012} preferiram uma estratégia linear mais simples, que lhes garantiu desempenho na execução do algoritmo à custa da eficiência das predições. Neste ponto, o trabalho de \citep{Wilkes2010}, com o PRESS, e de \cite{Nikravesh2014} com o uso do modelo oculto de Markov como técnica do motor de predição, se destacam. PRESS, com uma abordagem faseada para a construção da predição, busca encontrar padrões com FFT e com cadeia de Markov, e obteve um bom desempenho em tempo de execução, mesmo com janelas pequenas de captura de dados para retroalimentação do modelo. Mas como optou por sempre escolher o maior valor da predição para garantir que não haja quebra de SLO, seus resultados mostram que na questão otimização ele não obteve os melhores resultados. \cite{Nikravesh2014} ao usar HMM mostrou a maior eficiência dentre os algoritmos testados, atingindo uma margem de 97\% de acertos na fase de teste do seu modelo e um ótimo desempenho em tempo de execução, após ter o modelo criado, é claro.
 
-Concluímos que o equilíbrio entre um bom desempenho em tempo de execução e um algoritmo apropriado, com uma elevada taxa de acertos que resulte no uso otimizado dos recursos, seja o objetivo de um bom motor de predição. Portanto, os trabalhos analisados deixaram uma lacuna em relação a esta questão por não apresentarem um algoritmo que seja eficiente e ao mesmo tempo um processo de predição rápido. Nos trabalhos onde um destes itens foi contemplado, o outro necessariamente não esteve presente.
+Concluímos que o equilíbrio entre um bom desempenho em tempo de execução e um algoritmo apropriado, com uma elevada taxa de acertos que resulte no uso otimizado dos recursos, seja o objetivo de um bom motor de predição. Portanto, os trabalhos analisados deixaram uma lacuna em relação a esta questão por não apresentarem um algoritmo que seja eficiente e ao mesmo tempo um processo de predição rápido. Nos trabalhos onde um destes itens foi contemplado, o outro necessariamente não esteve presente, ou o objetivo do trabalho não era exatamente a otimização dos recursos, o que justificou as abordagens tomadas pelos autores.
+
 %=======================================================================
 % MODELO PROPOSTO
 %=======================================================================
 \chapter{Modelo}
-A partir da revisão teórica que abordamos no capítulo 2, nos foi possível estabelecer as bases necessárias para que possamos compreender os desafios inerentes a uma implementação de elasticidade proativa. E à luz destas informações, estudamos os trabalhos apresentados no capítulo 3, os quais se propõem de diversas formas a apresentar uma proposta de implementação de elasticidade automática preditiva. Conseguimos traçar um paralelo entre estes dois capítulos, o que nos capacitou a realizarmos uma avaliação destes trabalhos, e nos trouxe a percepção da lacuna existente nos artigos examinados, no que se refere a necessidade de uma implementação que tenha um bom desempenho em tempo de execução e ao mesmo tempo utilize um algoritmo eficiente, atingindo de fato o propósito de otimização de recursos através do provisionamento inteligente. Neste capítulo apresentaremos nosso modelo e debateremos em termos gerais as questões de projeto, sua arquitetura e como pretendemos avaliar o desempenho da nossa proposta.
+
+Neste capítulo apresentaremos nosso modelo e debateremos em termos gerais as questões de projeto, sua arquitetura e como pretendemos avaliar o desempenho da nossa proposta. Não pretendemos aqui extinguir tais assuntos, mas mostrar as direções que buscamos tomar com este projeto.
 
 \section{Questões de projeto}
 O objetivo deste trabalho é propor um método de análise preditiva a partir dos dados de carga de uma aplicação, com o intuito de fornecer subsídios para a implementação de uma abordagem proativa para a questão da elasticidade. Que deverá apresentar um processo de predição com um bom desempenho, e resultados que comprovem um alto grau de eficiência na questão da otimização dos recursos. Portanto, o modelo aqui proposto tem como escopo somente o módulo de predição.
@@ -519,11 +521,16 @@ O segundo momento de avaliação se refere a avaliação do modelo frente aos ob
 % CONCLUSÃO
 %=======================================================================
 \chapter{Conclusão}
+A partir da revisão teórica que abordamos no capítulo 2, nos foi possível estabelecer as bases necessárias para que pudéssemos compreender os desafios inerentes a uma implementação de elasticidade proativa. E à luz destas informações, estudamos os trabalhos apresentados no capítulo 3, os quais se propõem de diversas formas a apresentar uma proposta de implementação de elasticidade automática preditiva. Conseguimos traçar um paralelo entre estes dois capítulos, o que nos capacitou a realizarmos uma avaliação destes trabalhos, e nos trouxe a percepção da lacuna existente nos artigos examinados, no que se refere a necessidade de uma implementação que tenha um bom desempenho em tempo de execução e ao mesmo tempo utilize um algoritmo eficiente, atingindo de fato o propósito de otimização de recursos através do provisionamento inteligente. Ao concluir este trabalho, procuraremos mostrar as contribuições que esperamos alcançar a partir daqui, além de uma breve explanação sobre os trabalhos relacionados e outras literaturas relacionadas. Fecharemos este capítulo apresentando o cronograma para implementação do projeto aqui proposto.
 
+\section{Contribuições esperadas}
+Nossa questão de pesquisa original tratava da possibilidade de se usar análise de séries temporais para encontrar padrões na carga de trabalho de uma aplicação, com o intuito de prever valores futuros, objetivando oferecer subsídios para  a implementação de uma solução de elasticidade proativa. A partir da avaliação dos trabalhos relacionados, concluímos que as séries temporais, assim como várias outras técnicas podem ser utilizadas na implementação de soluções de elasticidade proativa. Sugerimos então expandir esta questão, de forma que nosso projeto possa confirmar a possibilidade do uso de séries temporais com um modelo probabilístico que ofereça um alto grau de exatidão em suas previsões, e que apresente um ótimo desempenho em execução. Com isto, pretendemos que este trabalho possa contribuir com uma definição mais exata de quais modelos probabilísticos são mais adequados para serem empregados em predição de recursos em ambientes de \textit{cloud computing}, que busquem a otimização destes recursos como propósito. 
 
-%5.1- Contribuições Esperadas 
-%5.2- Trab. Relacionados 
-%5.3- Cronograma 
+Esperamos também que o modelo desenvolvido possa servir de base para a implementação de uma solução de elasticidade proativa, a qual atenda plenamente os requisitos de uma solução que busca alto grau de confiabilidade em suas previsões. E tenha uma execução com tempo aceitável, de forma a não comprometer o desempenho do sistema.
+
+\section{Trabalhos relacionados}
+
+\section{Cronograma}
 
 % objetivos secundários
 %Para atingir o objetivo acima citado, temos os seguintes objetivos secundários:
@@ -543,10 +550,10 @@ O segundo momento de avaliação se refere a avaliação do modelo frente aos ob
 % pelo próprio autor.  Deve seguir as mesmas regras de formatação do
 % corpo principal do documento.
 %=======================================================================
-\appendix
-\chapter{Informações Complementares}
+%\appendix
+%\chapter{Informações Complementares}
 
-O Apêndice é o lugar para incluir textos complementares, que não são essenciais para o entendimento do assunto principal da monografia, mas que podem contribuir com informação relevante (por exemplo, uma prova matemática, uma conceituação básica, etc.).  Ele deve seguir o formato normal do documento.
+%O Apêndice é o lugar para incluir textos complementares, que não são essenciais para o entendimento do assunto principal da monografia, mas que podem contribuir com informação relevante (por exemplo, uma prova matemática, uma conceituação básica, etc.).  Ele deve seguir o formato normal do documento.
 
 %=======================================================================
 % Exemplo de Anexo
@@ -554,7 +561,7 @@ O Apêndice é o lugar para incluir textos complementares, que não são essenci
 % próprio autor, como cópias de artigos, manuais, folders, balancetes, etc.
 % e não precisam estar em conformidade com o modelo''.
 %=======================================================================
-\annex
-\chapter{Artigos Publicados}
-Existe diferença entre os Apêndices e os Anexos.  Os apêndices trazem informação escrita pelo próprio autor do trabalho, incorporando-se ao formato da monografia como um todo.  Já um anexo é um material à parte, definido/publicado por si só, e que o autor julga conveniente ser apresentado juntamente com a monografia.  Normalmente também vai apresentar formato próprio, como um artigo publicado, um folder, uma planilha, etc.
+%\annex
+%\chapter{Artigos Publicados}
+%Existe diferença entre os Apêndices e os Anexos.  Os apêndices trazem informação escrita pelo próprio autor do trabalho, incorporando-se ao formato da monografia como um todo.  Já um anexo é um material à parte, definido/publicado por si só, e que o autor julga conveniente ser apresentado juntamente com a monografia.  Normalmente também vai apresentar formato próprio, como um artigo publicado, um folder, uma planilha, etc.
 \end{document}
