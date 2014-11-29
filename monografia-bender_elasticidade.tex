@@ -139,7 +139,7 @@ pela Universidade do Vale do Rio dos Sinos --- UNISINOS
 % A recomendação é para 150 a 500 palavras.
 %=======================================================================
 \begin{abstract}
-A própria definição de elasticidade se confunde com a definição de computação em nuvem. Sendo provavelmente, se não a característica mais significativa, uma das mais importantes. Este aspecto da cloud computing consiste na capacidade de aumentar ou diminuir a alocação de recursos, sejam eles instâncias de máquinas virtuais ou configurações de CPU, memória, largura de banda de rede, etc. E tais alterações devem se dar, preferencialmente, em tempo de execução e sem interrupções com o objetivo de atender requisitos de demanda e gerenciar os recursos de forma inteligente. A elasticidade e a escalabilidade levam ao usuário uma sensação de que seus recursos são ilimitados, enquanto que cabe ao provedor destes serviços, garantir sob condições diversas e dinâmicas que esta sensação seja mantida, enquanto busca minimizar os seus próprios custos operacionais. Logo, a utilização mais eficiente dos recursos computacionais é do interesse de ambos, e nisto a elasticidade tem um papel fundamental. Um dos grandes desafios que esta área apresenta é justamente a aplicação do princípio da elasticidade de maneira automática e proativa. Dada a complexidade de compreender quais requisitos são demandados por uma aplicação e seus diferentes estados ao longo do tempo. Os maiores provedores de computação em nuvem, em seus diferentes formatos, oferecem além do controle de escalabilidade manual, um controle automático mas de maneira reativa, o qual embora eficaz, não é tão eficiente quanto um controle proativo que tenha ciência das necessidades de recursos para tratar com certa previsibilidade a demanda futura de uma dada aplicação. O objetivo desta monografia é, a partir de um estudo das pesquisas recentes no campo da elasticidade proativa, juntamente com uma fundamentação em modelos matemáticos, propor uma abordagem de análise preditiva a partir dos dados de utilização dos serviços de cloud computing com o intuito de fornecer subsídios para a implementação de uma abordagem proativa para a questão da elasticidade.
+A própria definição de elasticidade se confunde com a definição de computação em nuvem. Sendo provavelmente, se não a característica mais significativa, uma das mais importantes. Este aspecto da cloud computing consiste na capacidade de aumentar ou diminuir a alocação de recursos, sejam eles instâncias de máquinas virtuais ou configurações de CPU, memória, largura de banda de rede, etc. E tais alterações devem se dar, preferencialmente, em tempo de execução e sem interrupções com o objetivo de atender requisitos de demanda e gerenciar os recursos de forma inteligente. A elasticidade e a escalabilidade levam ao usuário uma sensação de que seus recursos são ilimitados, enquanto que cabe ao provedor destes serviços, garantir sob condições diversas e dinâmicas que esta sensação seja mantida, enquanto busca minimizar os seus próprios custos operacionais. Logo, a utilização mais eficiente dos recursos computacionais é do interesse de ambos, e nisto a elasticidade tem um papel fundamental. Um dos grandes desafios que esta área apresenta é justamente a aplicação do princípio da elasticidade de maneira automática e proativa. Dada a complexidade de compreender quais requisitos são demandados por uma aplicação e seus diferentes estados ao longo do tempo. Os maiores provedores de computação em nuvem, em seus diferentes formatos, oferecem além do controle de escalabilidade manual, um controle automático mas de maneira reativa, o qual embora eficaz, não é tão eficiente quanto um controle proativo que tenha ciência das necessidades de recursos para tratar com certa previsibilidade a demanda futura de uma dada aplicação. O objetivo desta monografia é, a partir de um estudo das pesquisas recentes no campo da elasticidade proativa, juntamente com uma fundamentação em modelos matemáticos, propor uma abordagem de análise preditiva a partir dos dados de utilização dos serviços de cloud computing, com o intuito de fornecer subsídios para a implementação de uma abordagem proativa para a questão da elasticidade.
 \end{abstract}
 
 %=======================================================================
@@ -249,7 +249,7 @@ Para atingir o objetivo acima citado, temos os seguintes objetivos secundários:
 
 
 \section{Organização do Texto}
-Este texto está organizado em cinco seções. Primeiramente, na seção 2, iremos revisar questões básicas a respeito da área da computação em nuvem, e as definições que são pertinentes ao escopo deste trabalho. Uma retomada dos tópicos relacionados às séries temporais também se faz necessária, bem como questões gerais a respeito de análise preditiva. Na seção 3, iremos avaliar trabalhos correlatos na área, e suas contribuições para a questão da elasticidade proativa. Esta avaliação tomará como objetivo traçar um quadro comparativo das soluções propostas, suas divergências e convergências, com o intuito de identificar lacunas e oportunidades de trabalho na literatura analisada. A seção 4 trará o modelo proposto, descrevendo sua arquitetura e metodologia para avaliação. E por fim, a seção 5 apresenta uma conclusão, especificando as contribuições esperadas, apontando trabalhos relacionados e um cronograma para o projeto.
+Este texto está organizado em cinco seções. Primeiramente, na seção 2, iremos revisar questões básicas a respeito da área da computação em nuvem, e as definições que são pertinentes ao escopo deste trabalho. Uma retomada dos tópicos relacionados às séries temporais também se faz necessária, bem como questões gerais a respeito de análise preditiva. Na seção 3, iremos avaliar trabalhos correlatos na área, e suas contribuições para a questão da elasticidade proativa. Esta avaliação tomará como objetivo traçar um quadro comparativo das soluções propostas, suas divergências e convergências, com o intuito de identificar lacunas e oportunidades de trabalho na literatura analisada. A seção 4 trará o modelo proposto, descrevendo sua arquitetura e metodologia para avaliação. E por fim, a seção 5 apresenta uma conclusão, especificando as contribuições esperadas, apontando as contribuições dos trabalhos relacionados e um cronograma para o projeto.
 
 %=======================================================================
 % Escrevendo o Texto
@@ -261,7 +261,7 @@ Este texto está organizado em cinco seções. Primeiramente, na seção 2, irem
 \chapter{Fundamentação Teórica}
 
 \section{Computação em Nuvem}
-Segundo \cite{Lorido-botr2012}, cloud computing é uma tecnologia emergente que está se tornando muito popular. E grande parte disso devesse a sua característica elástica, a qual permite aos usuários que adquiram e liberem recursos sob demanda, e paguem somente pelos recursos que eles precisam (modelo pay-as-you-go). Estes recursos se apresentam geralmente na forma de Máquinas Virtuais (Virtual Machines - VM). Há três principais modelos de serviços associados com a computação em nuvem, são eles:
+Segundo \cite{Lorido-botr2012}, cloud computing é uma tecnologia emergente que está se tornando muito popular. E grande parte disso deve-se a sua característica elástica, a qual permite aos usuários que adquiram e liberem recursos sob demanda, e paguem somente pelos recursos que eles precisam (modelo pay-as-you-go). Estes recursos se apresentam geralmente na forma de Máquinas Virtuais (Virtual Machines - VM). Há três principais modelos de serviços associados com a computação em nuvem, são eles:
 
 %TODO conseguir referências bibliográficas para os exemplos citados abaixo
 \begin{itemize}
@@ -356,35 +356,35 @@ Um processo estocástico pode ser definido portanto da seguinte maneira:
 
 para qualquer conjunto de tempos e valor de } \textit{k}.\newline
 
-Para descrever um processo estocástico, normalmente utilizamo-nos da média, variância e autocovariância. A média é o valor que aponta onde mais se concentram os dados da distribuição. Funciona como um ponto de equilíbrio das frequências. A variância de uma variável aleatória denota a medida de sua dispersão. Ou seja, demonstra quão longe os seus valores estão de um dado valor esperado. E por sua vez a autocovariânica é uma medida do grau de interdependência entre duas variáveis aleatórias. É também chamada de dependência linear.Estas funções são definidas abaixo respectivamente:
+Para descrever um processo estocástico, normalmente utilizamo-nos da média, variância e autocovariância. A média é o valor que aponta onde mais se concentram os dados da distribuição. Funciona como um ponto de equilíbrio das frequências. A variância de uma variável aleatória denota a medida de sua dispersão. Ou seja, demonstra quão longe os seus valores estão de um dado valor esperado. E por sua vez a autocovariânica é uma medida do grau de interdependência entre duas variáveis aleatórias. É também chamada de dependência linear. Estas funções são definidas abaixo respectivamente:
 
 \[ \mu \textit{(t)} = E[\textit{X(t)}] \]
 \[ \sigma^{2} \textit{(t)} = Var[\textit{X(t)}] \]
 \[\gamma \textit{(t}_{1} \textit{,t}_{2}) = E[ \textit{X(t}_{1}) - \mu \textit{(t}_{1})] [ \textit{X(t}_{2}) - \mu \textit{(t}_{2})] \]
 
-Existem muitos processos estocásticos que são utilizados na especificação de modelos para séries temporais. Um levantamento de trabalhos que utilizam séries temporais na predição de valores futuros para cargas de trabalhos na construção de uma abordagem proativa de elasticidade foi realizado por \citep{Lorido-botr2012}. Neste trabalho ele cita as seguintes processos estocásticos: processos de médias móveis, processos autoregressivos, modelos mistos ARMA, suavização exponencial e abordagens baseadas em aprendizado de máquina.\citep{Lorido-botr2012} classifica estas técnicas da seguinte maneira:
+Existem muitos processos estocásticos que são utilizados na especificação de modelos para séries temporais. Um levantamento de trabalhos que utilizam séries temporais na predição de valores futuros para cargas de trabalhos na construção de uma abordagem proativa de elasticidade foi realizado por \citep{Lorido-botr2012}. Neste trabalho ele cita as seguintes processos estocásticos: processos de médias móveis, processos autoregressivos, modelos mistos ARMA, suavização exponencial e abordagens baseadas em aprendizado de máquina. \citep{Lorido-botr2012} classifica estas técnicas da seguinte maneira:
 
 \begin{itemize}
-	\item Métodos de médias - podem ser usados para suavizar a série temporal com o objetivo de remover ruído ou para fazer predições. A suavização visa remover discrepâncias (\textit{outliers}, as quais podem ter um efeito devastador no processo de predição. Nesta categoria encontramos as médias móveis e a suavização exponencial, por exemplo.
+	\item Métodos de médias - podem ser usados para suavizar a série temporal com o objetivo de remover ruído ou para fazer predições. A suavização visa remover discrepâncias (\textit{outliers}), as quais podem ter um efeito devastador no processo de predição. Nesta categoria encontramos as médias móveis e a suavização exponencial, por exemplo.
 	\item Métodos autorregressivos - utilizados para predições. %TODO adicionar exemplos
 	\item Processos autoregressivos médias móveis (ARMA) - combina ambos os métodos anteriores.
 \end{itemize}
 Uma descrição bastante detalhada destes métodos pode ser encontrada em \cite{Lee2009} e em \cite{Shumway2000}.
 
 \section{Algoritmos e modelos probabilísticos utilizados no processo de predição}
-Nesta seção abordaremos brevemente alguns dos algoritmos e dos processos estocásticos utilizados nos trabalhos relacionados citados na seção 3. Não pretendemos aqui esgotar o assunto, ou mesmo fornecer uma base matemática suficiente para a implementação dos mesmos. O propósito aqui é tão somente auxiliar na compreensão dos propósitos de tais técnicas, e porque são utilizadas nas diferentes soluções de elasticidade proativa sugeridas no próximo capítulo.
+Nesta seção abordaremos brevemente alguns dos algoritmos e dos processos estocásticos utilizados nos trabalhos relacionados, citados na seção 3. Não pretendemos aqui esgotar o assunto, ou mesmo fornecer uma base matemática suficiente para a implementação dos mesmos. O objetivo é tão somente auxiliar na compreensão dos propósitos de tais técnicas, e porque são utilizadas nas diferentes soluções de elasticidade proativa sugeridas no próximo capítulo.
 
 \subsection{Transformada rápida de Fourier (FFT)}
-A Transformada de Fourier - \textit{Fast Fourier Transform} em inglês - ́e, segundo \cite{Goncalves2004}, uma ferramenta matemática que realiza a transição entre as variáveis tempo e frequência de sinais. Ela é, sem dúvida, uma descoberta muito importante no campo computacional em virtude da grande economia de processamento que proporciona, pois a transformada rápida de fourier diminui o tempo de processamento em aplicações de diferentes naturezas, tais como:  resolução de equações diferenciais, equações integrais, problemas inversos, processamento de sinal, etc.
+A Transformada de Fourier, ou \textit{Fast Fourier Transform} em inglês, é segundo \cite{Goncalves2004}, uma ferramenta matemática que realiza a transição entre as variáveis tempo e frequência de sinais. Ela é, sem dúvida, uma descoberta muito importante no campo computacional em virtude da grande economia de processamento que proporciona, pois a transformada rápida de fourier diminui o tempo de processamento em aplicações de diferentes naturezas, tais como:  resolução de equações diferenciais, equações integrais, problemas inversos, processamento de sinal, etc.
 %TODO incluir mais alguma informação sobre o uso da FFT no PRESS
 
 \subsection{Cadeia de Markov}
-Uma Cadeia de Markov ́e um tipo especial de processo estocástico que possui a chamada propriedade markoviana . Um processo estocástico tem a propriedade markoviana se os estados anteriores do processo são irrelevantes para a predição dos próximos estados, desde que o estado atual seja conhecido. 
+Uma Cadeia de Markov ́é um tipo especial de processo estocástico que possui a chamada propriedade markoviana . Um processo estocástico tem a propriedade markoviana se os estados anteriores do processo são irrelevantes para a predição dos próximos estados, desde que o estado atual seja conhecido. 
 \citep{Junior2011} acrescenta que a perda de memória é a base da caracterização das cadeias de Markov e ela estabelece que em um conjunto de estados discretos o futuro só depende do estado presente, ou seja, os estados anteriores são irrelevantes para a predição dos estados seguintes, desde que o estado atual seja conhecido.
 %TODO incluir mais alguma informação sobre o uso da cadeia de markov no PRESS
 
 \subsection{Modelo Oculto de Markov}
-HMM \textit{(Hidden Markov Model)} é um modelo estatístico que difere da cadeia de Markov clássica pelo fato de que seus parâmetros são desconhecidos. Logo, o desafio deste processo estocástico é justamente a determinação dos parâmetros de seus parâmetros ocultos a partir dos seus parâmetros observáveis. E estes últimos por sua vez, retroalimentam o sistema, podendo ser usados para novas análises. É um modelo bastante apropriado para o processo de reconhecimento de padrões. HMM é uma ferramenta para representar uma distribuição de probabilidades sobre uma sequência de ovservações.
+HMM \textit{(Hidden Markov Model)} é um modelo estatístico que difere da cadeia de Markov clássica pelo fato de que seus parâmetros são desconhecidos. Logo, o desafio deste processo estocástico é justamente a determinação de seus parâmetros ocultos a partir dos seus parâmetros observáveis. E estes últimos por sua vez, retroalimentam o sistema, podendo ser usados para novas análises. É um modelo bastante apropriado para o processo de reconhecimento de padrões. HMM é uma ferramenta para representar uma distribuição de probabilidades sobre uma sequência de observações.
 
 \subsection{Box & Jenkins (ARIMA)}
 Essa metodologia permite que valores futuros de uma série sejam previstos tomando por base apenas seus valores presentes e passados. Isso é feito através da correlação temporal existente entre os valores existentes. A realização do processo temporal pelo método de Box & Jenkins é representada por um conjunto de processos estocásticos denominados modelos ARIMA (\textit{autoregressive integrated moving average}) onde, em cada instante de tempo t, existe um conjunto de valores que a série pode assumir, aos quais estão associadas possibilidades de ocorrência \citep{Silva2005}. 
@@ -529,12 +529,43 @@ Nossa questão de pesquisa original tratava da possibilidade de se usar análise
 Esperamos também que o modelo desenvolvido possa servir de base para a implementação de uma solução de elasticidade proativa, a qual atenda plenamente os requisitos de uma solução que busca alto grau de confiabilidade em suas previsões. E tenha uma execução com tempo aceitável, de forma a não comprometer o desempenho do sistema.
 
 \section{Trabalhos relacionados}
+Dentre os trabalhos relacionados, foi possível encontrar uma grande variedade de abordagens para a questão da elasticidade. Tão diversa quanto os propósitos destes trabalhos. Podemos notar uma preocupação geral com a questão do SLO, e este é justamente um dos desafios ao se automatizar o processo de alocação e consolidação de recursos. Alguns autores optaram por uma abordagem mais conservadora, onde a superestimação era preferível em face da possibilidade de uma otimização, com o objetivo de garantir o SLO. Também vimos alguns que optaram por técnicas puramente lineares em seus processos de predição, como medida de garantir o desempenho em tempo de execução, nestes casos estratégias para garantir o SLO estavam presentes. Naquelas abordagens mais ousadas, vimos o emprego de múltiplas técnicas de predição, e algumas soluções bastante robustas.
+
+Podemos ver que soluções mistas de elasticidade têm um bom apelo, uma vez que se pode utilizar uma para garantir os limites para a outra, e assim certificar-se de que o acordo de nível de serviço não seja quebrado. E no campo dos modelos probabilísticos utilizados, notamos um grande uso daqueles categorizados como autoregressivos. No entando, estes não apresentaram os melhores resultados. Neste ponto, uma surpresa bastante interessante foram as implementações que se utilizaram de cadeias de Markov e outras soluções derivadas desta. Estas apresentaram um tempo de processamento bastante aceitável, e no caso do modelo oculto de Markov, seus resultados foram surpreendentes do ponto de vista de exatidão das predições. Estes resultados nos levam a considerar fortemente que nosso modelo seja testado com ARIMA e HMM.
 
 \section{Cronograma}
+Abaixo encontramos uma tabela com a relação de atividades previstas para o desenvolvimento deste trabalho, com um planejamento das suas respectivas datas de execução.
 
-% objetivos secundários
-%Para atingir o objetivo acima citado, temos os seguintes objetivos secundários:
-%Desenvolver uma estratégia para coleta de dados;
+\begin{tabular}{|l|c|c|c|c|c|c|}\hline
+ & \multicolumn{6}{c|}{\textbf{Meses}}\\ \cline{2-7}
+\raisebox{1.5ex}{\textbf{Etapa}} & 01 & 02 & 03 & 04 & 05 & 06 										\\ \hline
+
+Estudo e escolha da plataforma de cloud computing 						& X &   &   &   &   &		  	\\ \hline
+Estudo e escolha de ferramentas para desenvolvimento e avaliação 		& X &   &   &   &   & 			\\ \hline
+Identificação dos modelos probabilísticos								& X &   &   &   &   &			\\ \hline
+Modelagem da solução			 										& X & X &   &   &   &			\\ \hline
+Definir estratégia para coleta dos dados								&   & X &   &   &   & 			\\ \hline
+Desenvolvimento do módulo de captura 									& 	& X &	&   &   &			\\ \hline
+Testes e avaliação do módulo de captura 								& 	& X & 	& 	& 	&  		   \\ \hline
+Escrita do artigo														& 	& X & X & X & X & X			\\ \hline
+Desenvolvimento do módulo de tratamento dos dados						&   &   & X &   &   & 			\\ \hline
+Testes e avaliação do módulo de tratamento dos dados					& 	& 	& X	& 	& 	& 		   \\ \hline
+Desenvolvimento do módulo de modelos probabilísticos					& 	& 	& X	& X &	&  			\\ \hline
+Testes e avaliação do módulo de modelos probabilísticos				& 	& 	& 	& X & 	& 		   \\ \hline
+Desenvolvimento do módulo de avaliação de precisão						&	&	&	& X & X &  		   \\ \hline
+Testes e avaliação do módulo de avaliação de precisão					& 	& 	& 	& 	& X	& 		   \\ \hline
+Preparação da apresentação												& 	&   &   &   & X & X			\\ \hline
+Desenvolvimento do módulo de exportação								& 	& 	& 	& 	& 	& X		   \\ \hline
+Testes e avaliação do módulo de exportação								& 	& 	& 	& 	& 	& X		   \\ \hline
+Baterias de testes para validação 										& 	& 	& 	& 	& 	& X 	   \\ \hline
+Avaliação e tratamento dos resultados									& 	& 	& 	& 	& 	& X 	   \\ \hline
+
+\end{tabular} 
+\end{small}
+
+\label{t_cronograma}
+\end{table} 
+
 %Criar uma estrutura para analisar os dados e aplicar modelos matemáticos condizentes com os padrões encontrados;
 %Disponibilizar como resposta uma sugestão de alteração da configuração vigente, em virtude da demandada prevista de acordo com a análise realizada. 
 
